@@ -1,0 +1,77 @@
+{
+  "docxPath": "./cv_web.docx",
+  "outputDir": "./src/data",
+
+  "leadProfessor": {
+    "name": "Chunbo Luo",
+    "role": "Lead Professor, ISE Group",
+    "affiliation": "University of Exeter",
+    "image": "/images/members/chunbo-luo.jpg"
+  },
+
+  "sectionMappings": {
+    "Research Focus and Objectives": ["research focus", "research objectives", "research vision"],
+    "Externally Funded Projects (since 2015)": ["externally funded", "funded projects", "pi projects", "coi projects"],
+    "Proposals under Review": ["proposals under review", "under review"],
+    "Proposals in Preparation": ["proposals in preparation", "in preparation"],
+    "Publications": ["publications", "citation metrics"],
+    "Chapters in Books": ["chapters in books", "book chapters"],
+    "Journal Papers": ["journal papers", "journal articles"],
+    "Review Articles in Journals": ["review articles"],
+    "Selected Papers in Conferences": ["conference papers", "selected papers in conferences"],
+    "Report": ["report", "reports"],
+    "Datasets and Codes": ["datasets and codes", "datasets", "codes"],
+    "Modules Taught": ["modules taught", "teaching"],
+    "New Programme / Modules Developed": ["new programme", "modules developed"],
+    "Teaching Innovation and Pedagogy": ["teaching innovation", "pedagogy"],
+    "Nomination and Awards": ["nomination and awards", "teaching awards"],
+    "Other Contributions": ["other contributions"],
+    "Examination of BSc and MSc Programmes": ["examination of bsc", "external examiner"],
+    "PhD/MPhil Examination": ["phd/mphil examination", "phd examination", "thesis examination"],
+    "Postgraduate Research": ["postgraduate research"],
+    "Administrative Responsibilities": ["administrative responsibilities", "admin responsibilities"],
+    "Theme Leads": ["theme leads", "theme lead"],
+    "Honours and Awards": ["honours and awards", "awards"],
+    "Membership and Official Positions": ["membership", "official positions"],
+    "External Activities": ["external activities"],
+    "Invited Keynote Addresses and Talks": ["keynote", "invited talks"],
+    "Editorial Boards": ["editorial boards", "editor"],
+    "Conference Organisation and Chairing Roles": ["conference organisation", "chairing roles"],
+    "Hosted Visitors and Guest Talks (since 2019)": ["hosted visitors", "guest talks"]
+  },
+
+  "metricsPatterns": {
+    "Citations": ["citations:\\s*([\\d,]+)", "times cited[:\\s]*([\\d,]+)"],
+    "h-index": ["h-index[:\\s]*([\\d]+)"],
+    "i10-index": ["i10-index[:\\s]*([\\d]+)"],
+    "Total Funding (GBP)": ["total[:\\s]*gbp[:\\s]*([\\d.]+m)", "in total gbp[:\\s]*([\\d.]+m)"]
+  },
+
+  "memberPatterns": {
+    "currentPostDoc": {
+      "headerPatterns": ["postdoctoral research fellows", "current postdocs", "research fellows"],
+      "namePattern": "^(?:Dr\\.?\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "periodPattern": "(\\d{4})\\s*[-–]\\s*(present|\\d{4})",
+      "projectPattern": "(?:EPSRC|NERC|EU|Horizon|Royal Society|Innovate UK)[^,.]+"
+    },
+    "currentPhD": {
+      "headerPatterns": ["current lead supervision", "current phd students", "phd students"],
+      "namePattern": "^([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "periodPattern": "(\\d{4})\\s*[-–]\\s*(present|\\d{4})",
+      "researchPattern": "(?:Research|Topic|Project)?[:\\s]*(.+?)(?:,|\\.|$)",
+      "fundingPattern": "(CSC|Self-funded|EI CDT|EPSRC|Exeter[^,]+)"
+    },
+    "graduatedPhD": {
+      "headerPatterns": ["graduated phd", "mphil students", "completed phd"],
+      "namePattern": "^(?:Dr\\.?\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "periodPattern": "(\\d{4})\\s*[-–]\\s*(\\d{4})",
+      "positionPattern": "(?:Now|Current|Position)[:\\s]*(.+?)(?:\\.|$)"
+    },
+    "graduatedPostDoc": {
+      "headerPatterns": ["former postdoc", "previous research fellows"],
+      "namePattern": "^(?:Dr\\.?\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "periodPattern": "(\\d{4})\\s*[-–]\\s*(\\d{4})",
+      "positionPattern": "(?:Now|Current|Position)[:\\s]*(.+?)(?:\\.|$)"
+    }
+  }
+}

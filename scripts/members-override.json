@@ -1,0 +1,27 @@
+{
+  "_comment": "Override or add members here. These will be merged with CV-parsed members.",
+  "_usage": "Run: npm run parse-cv to apply. Set 'enabled' to true to use overrides.",
+  "enabled": false,
+
+  "currentMembers": [
+    {
+      "id": "example-member",
+      "name": "Example Name",
+      "type": "PhD",
+      "research": "Research topic here",
+      "period": "2024 - present",
+      "funding": "Funding source"
+    }
+  ],
+
+  "graduatedMembers": [
+    {
+      "id": "example-alumni",
+      "name": "Dr Example Alumni",
+      "type": "PhD",
+      "research": "Past research topic",
+      "period": "2020 - 2024",
+      "currentPosition": "Current job title, Organization"
+    }
+  ]
+}
