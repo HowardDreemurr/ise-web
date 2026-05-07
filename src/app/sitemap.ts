@@ -4,7 +4,19 @@ export const dynamic = "force-static";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howarddreemurr.github.io/ise-web";
 
-const routes = ["", "/members", "/contribute", "/impact"];
+const routes = [
+  "",
+  "/community",
+  "/community/news",
+  "/community/events",
+  "/research",
+  "/research/publications",
+  "/research/projects",
+  "/research/impact",
+  "/people",
+  "/resources",
+  "/join",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

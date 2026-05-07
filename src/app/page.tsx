@@ -56,8 +56,8 @@ export default function Home() {
         highlight="Environmental Observation"
         description="We envision scientific investigations that advance real-world applications including natural disaster management, environment protection, and digital economy."
         ctas={[
-          { label: "Explore Research", href: "/contribute" },
-          { label: "View Impact", href: "/impact", variant: "secondary" },
+          { label: "Explore Research", href: "/research" },
+          { label: "View Impact", href: "/research/impact", variant: "secondary" },
         ]}
         imageSrc="/images/hero-vision.png"
       />
@@ -100,7 +100,7 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <h3 className="font-serif text-2xl font-semibold">Research Areas</h3>
               <Button asChild variant="ghost" size="sm">
-                <Link href="/contribute">View all &rarr;</Link>
+                <Link href="/research">View all &rarr;</Link>
               </Button>
             </div>
           </Container>
@@ -120,7 +120,7 @@ export default function Home() {
         </p>
         <Reveal>
           <Button asChild size="lg" className="rounded-full font-semibold">
-            <Link href="/members">Meet the Team</Link>
+            <Link href="/people">Meet the Team</Link>
           </Button>
         </Reveal>
       </Section>

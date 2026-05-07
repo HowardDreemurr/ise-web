@@ -14,10 +14,10 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="secondary" size="sm" asChild>
-            <Link href="/news">View updates</Link>
+            <Link href="/community/news">View updates</Link>
           </Button>
           <Button variant="outline" size="sm" asChild>
-            <Link href="/researches">Explore research</Link>
+            <Link href="/research">Explore research</Link>
           </Button>
         </div>
       </div>
