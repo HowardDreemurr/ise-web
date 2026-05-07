@@ -47,3 +47,6 @@ proj_req.md
 # Doc
 ResearchStatement.pptx
 cv_web.docx
+
+# Claude Code local working dir (settings, transcripts)
+.claude/
