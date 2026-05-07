@@ -47,11 +47,12 @@ function HamburgerIcon({ isOpen, onClick }: { isOpen: boolean; onClick: () => vo
 export function SiteHeader() {
   const [isOpen, setIsOpen] = React.useState(false)
   const pathname = usePathname()
+  const [prevPathname, setPrevPathname] = React.useState(pathname)
 
-  // Close mobile menu on route change
-  React.useEffect(() => {
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setIsOpen(false)
-  }, [pathname])
+  }
 
   return (
     <header className="sticky top-0 z-50 h-16 bg-white/95 backdrop-blur-sm border-b border-border/50">
