@@ -49,7 +49,7 @@ export default function ImpactPage() {
                       {impact.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {impact.tags.map((tag) => (
+                      {(impact.tags ?? []).map((tag) => (
                         <Badge key={tag} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>

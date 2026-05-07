@@ -1,5 +1,4 @@
 export * from "./FeatureCard"
-export * from "./LeadProfile"
 export * from "./PageHeader"
 export * from "./PageHero"
 export * from "./PillarCard"

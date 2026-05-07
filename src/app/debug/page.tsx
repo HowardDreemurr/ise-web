@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Radar, Cpu, Compass } from "lucide-react"
 import { notFound } from "next/navigation"
 
 import {
@@ -12,20 +13,24 @@ import {
   CardTitle,
   Container,
   FeatureCard,
-  LeadProfile,
+  PillarTrio,
   Reveal,
   Section,
-  SectionIntro,
   Separator,
   StatCard,
 } from "@/components"
-import { getLeadProfessor } from "@/lib/content"
+import type { Pillar } from "@/components"
+
+const demoPillars: Pillar[] = [
+  { id: "p1", title: "Sensing", description: "Demo card.", icon: Radar },
+  { id: "p2", title: "Processing", description: "Demo card.", icon: Cpu },
+  { id: "p3", title: "Decisions", description: "Demo card.", icon: Compass },
+]
 
 export default function DebugPage() {
   if (process.env.NODE_ENV === "production") {
     notFound()
   }
-  const leadProfessor = getLeadProfessor()
   return (
     <div className="bg-background">
       <Section kicker="Debug" title="Component Playground" colorIndex={0}>
@@ -41,8 +46,9 @@ export default function DebugPage() {
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold">Pill Badges</h2>
                 <div className="flex flex-wrap gap-3">
-                  <div className="pill">Default Pill</div>
-                  <div className="pill pill-primary">Primary Pill</div>
+                  <div className="pill">Default</div>
+                  <div className="pill pill-primary">Primary</div>
+                  <div className="pill pill-on-dark bg-foreground/80">On dark</div>
                 </div>
               </div>
             </Reveal>
@@ -71,12 +77,14 @@ export default function DebugPage() {
                 <Card className="ise-panel">
                   <CardHeader>
                     <CardTitle>Card title</CardTitle>
-                    <CardDescription>Card description for visual hierarchy.</CardDescription>
+                    <CardDescription>
+                      Card description for visual hierarchy.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Card content with a few lines of text to validate spacing and
-                      typography across blocks.
+                      Card content with a few lines of text to validate spacing
+                      and typography across blocks.
                     </p>
                   </CardContent>
                   <CardFooter className="justify-between">
@@ -111,7 +119,7 @@ export default function DebugPage() {
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold">StatCard</h2>
                 <div className="grid gap-4 sm:grid-cols-3">
-                  <StatCard value="128" label="Deployments" note="Field and lab tests" />
+                  <StatCard value="128" label="Deployments" note="Field and lab" />
                   <StatCard value="24" label="Datasets" note="Public releases" />
                   <StatCard value="9" label="Partners" note="Research + industry" />
                 </div>
@@ -120,8 +128,8 @@ export default function DebugPage() {
 
             <Reveal delayMs={300}>
               <div className="space-y-4">
-                <h2 className="text-lg font-semibold">LeadProfile</h2>
-                <LeadProfile profile={leadProfessor} />
+                <h2 className="text-lg font-semibold">PillarTrio</h2>
+                <PillarTrio pillars={demoPillars} />
               </div>
             </Reveal>
 
