@@ -44,9 +44,9 @@ next-env.d.ts
 operation.md 
 proj_req.md
 
-# Doc
-ResearchStatement.pptx
-cv_web.docx
+# Doc — large source documents (CV / research statement)
+*.docx
+*.pptx
 
 # Claude Code local working dir (settings, transcripts)
 .claude/
