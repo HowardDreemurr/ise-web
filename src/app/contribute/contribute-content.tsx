@@ -76,7 +76,7 @@ function ResearchAreaSection({ area, index }: ResearchAreaSectionProps) {
   }
 
   return (
-    <section className={cn("py-12 md:py-16", index % 2 === 0 ? "section-white" : "section-gray")}>
+    <section className={cn("py-12 md:py-16", index % 2 === 0 ? "section-surface" : "section-muted")}>
       <Container>
         <Reveal>
           <div className="mb-8">
@@ -92,7 +92,7 @@ function ResearchAreaSection({ area, index }: ResearchAreaSectionProps) {
         </Reveal>
 
         <Reveal delayMs={100}>
-          <Card className="ice-panel overflow-hidden">
+          <Card className="ise-panel overflow-hidden">
             <CardContent className="p-4 sm:p-5">
               <div className="flex min-w-0 flex-col gap-3 lg:flex-row lg:gap-5">
                 <nav className="shrink-0 lg:w-56 lg:border-r lg:border-border/40 lg:pr-4">
@@ -287,13 +287,13 @@ export function ContributeContent({ researchAreas, codeAndData }: ContributeCont
         </p>
       </Section>
 
-      <section className="py-12 md:py-16 section-gray">
+      <section className="py-12 md:py-16 section-muted">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
               <Reveal>
                 <h4 className="font-semibold mb-4 flex items-center gap-2">
-                  <span className="pill-muted">Code</span>
+                  <span className="pill">Code</span>
                   Repositories
                 </h4>
               </Reveal>
@@ -305,7 +305,7 @@ export function ContributeContent({ researchAreas, codeAndData }: ContributeCont
                       <Link
                         href={item.link}
                         target="_blank"
-                        className="block ice-panel p-4 hover:-translate-y-0.5 transition-all group"
+                        className="block ise-panel p-4 hover:-translate-y-0.5 transition-all group"
                       >
                         <h5 className="font-semibold text-sm group-hover:text-primary transition-colors">
                           {item.title}
@@ -322,7 +322,7 @@ export function ContributeContent({ researchAreas, codeAndData }: ContributeCont
             <div>
               <Reveal>
                 <h4 className="font-semibold mb-4 flex items-center gap-2">
-                  <span className="pill-muted">Data</span>
+                  <span className="pill">Data</span>
                   Datasets
                 </h4>
               </Reveal>
@@ -334,7 +334,7 @@ export function ContributeContent({ researchAreas, codeAndData }: ContributeCont
                       <Link
                         href={item.link}
                         target="_blank"
-                        className="block ice-panel p-4 hover:-translate-y-0.5 transition-all group"
+                        className="block ise-panel p-4 hover:-translate-y-0.5 transition-all group"
                       >
                         <h5 className="font-semibold text-sm group-hover:text-primary transition-colors">
                           {item.title}

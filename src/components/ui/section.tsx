@@ -4,8 +4,8 @@ import { Reveal } from "./reveal"
 import type { ReactNode, HTMLAttributes } from "react"
 
 const SECTION_COLORS = [
-  "#ffffff", // white
-  "#f3f4f6", // gray
+  "var(--card)",  // surface
+  "var(--muted)", // muted
 ]
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
@@ -65,7 +65,7 @@ export function Section({
           <div>
             <Reveal>
               {kicker && (
-                <div className={cn(hasDarkBg ? "pill-dark mb-4" : "pill mb-4")}>
+                <div className={cn("mb-4", hasDarkBg ? "pill pill-on-dark" : "pill pill-primary")}>
                   {kicker}
                 </div>
               )}

@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Space_Grotesk } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import { SiteChrome } from "@/components";
 import "./globals.css";
 
-const iceSans = Space_Grotesk({
-  variable: "--font-ice-sans",
+const iseSans = Inter({
+  variable: "--font-ise-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const iceSerif = Cormorant_Garamond({
-  variable: "--font-ice-serif",
+const iseSerif = Source_Serif_4({
+  variable: "--font-ise-serif",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howarddreemurr.github.io/ise-web";
@@ -65,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${iceSans.variable} ${iceSerif.variable} antialiased`}>
+      <body className={`${iseSans.variable} ${iseSerif.variable} antialiased`}>
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

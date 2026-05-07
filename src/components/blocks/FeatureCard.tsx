@@ -16,7 +16,7 @@ export function FeatureCard({
   ...props
 }: FeatureCardProps) {
   return (
-    <Card className={cn("ice-panel", className)} {...props}>
+    <Card className={cn("ise-panel", className)} {...props}>
       <CardHeader>
         {eyebrow && (
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">

@@ -16,7 +16,7 @@ export function PageHeader({
   ...props
 }: PageHeaderProps) {
   return (
-    <div className={cn("ice-panel p-8 sm:p-10", className)} {...props}>
+    <div className={cn("ise-panel p-8 sm:p-10", className)} {...props}>
       <SectionIntro
         kicker={kicker}
         title={title}

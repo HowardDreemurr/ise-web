@@ -10,7 +10,7 @@ type StatCardProps = HTMLAttributes<HTMLDivElement> & {
 
 export function StatCard({ value, label, note, className, ...props }: StatCardProps) {
   return (
-    <Card className={cn("ice-panel overflow-hidden", className)} {...props}>
+    <Card className={cn("ise-panel overflow-hidden", className)} {...props}>
       <CardContent className="p-2 sm:p-3">
         {/* Mobile: value and label on same row */}
         <div className="flex items-baseline gap-2 sm:block sm:space-y-1">

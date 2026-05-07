@@ -5,9 +5,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-ice-sans);
-  --font-serif: var(--font-ice-serif);
-  --font-mono: var(--font-ice-sans);
+  --font-sans: var(--font-ise-sans);
+  --font-serif: var(--font-ise-serif);
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -45,79 +45,78 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
 }
 
 :root {
-  --radius: 0.75rem;
-  /* Clean light theme inspired by instant-web */
-  --background: #f7f7f7;
-  --foreground: #1a1a1a;
+  /* Modern academic palette: cool slate background, deep ink text, restrained primary blue */
+  --radius: 0.5rem;
+  --background: #fafaf9;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #0066cc;
+  --popover-foreground: #0f172a;
+  --primary: #1e3a8a;
   --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #1a1a1a;
-  --notable: #ffb300;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --notable: #b45309;
   --notable-foreground: #ffffff;
-  --muted: #ededed;
-  --muted-foreground: #666666;
-  --accent: #00a8e8;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --accent: #0369a1;
   --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --border: rgba(0, 0, 0, 0.1);
-  --input: rgba(0, 0, 0, 0.1);
-  --ring: #0066cc;
-  --chart-1: #0066cc;
-  --chart-2: #00a8e8;
-  --chart-3: #004494;
-  --chart-4: #00b6aa;
-  --chart-5: #003366;
+  --destructive: #b91c1c;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #1e3a8a;
+  --chart-1: #1e3a8a;
+  --chart-2: #0369a1;
+  --chart-3: #0891b2;
+  --chart-4: #475569;
+  --chart-5: #0f172a;
   --sidebar: #ffffff;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #0066cc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #1e3a8a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f3f4f6;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: rgba(0, 0, 0, 0.1);
-  --sidebar-ring: #0066cc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #1e3a8a;
 }
 
 .dark {
-  --background: #010109;
-  --foreground: #f5f5f5;
-  --card: #1a1a1a;
-  --card-foreground: #f5f5f5;
-  --popover: #1a1a1a;
-  --popover-foreground: #f5f5f5;
-  --primary: #3399ff;
-  --primary-foreground: #0f0f0f;
-  --secondary: #262626;
-  --secondary-foreground: #f5f5f5;
-  --muted: #262626;
-  --muted-foreground: #a3a3a3;
-  --accent: #00a8e8;
-  --accent-foreground: #0f0f0f;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #3399ff;
-  --chart-1: #3399ff;
-  --chart-2: #00a8e8;
-  --chart-3: #66b3ff;
-  --chart-4: #0066cc;
-  --chart-5: #004494;
-  --sidebar: #1a1a1a;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #3399ff;
-  --sidebar-primary-foreground: #0f0f0f;
-  --sidebar-accent: #262626;
-  --sidebar-accent-foreground: #f5f5f5;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #3399ff;
+  --background: #0a0e1a;
+  --foreground: #f1f5f9;
+  --card: #111827;
+  --card-foreground: #f1f5f9;
+  --popover: #111827;
+  --popover-foreground: #f1f5f9;
+  --primary: #60a5fa;
+  --primary-foreground: #0a0e1a;
+  --secondary: #1f2937;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1f2937;
+  --muted-foreground: #94a3b8;
+  --accent: #38bdf8;
+  --accent-foreground: #0a0e1a;
+  --destructive: #f87171;
+  --border: #1f2937;
+  --input: #1f2937;
+  --ring: #60a5fa;
+  --chart-1: #60a5fa;
+  --chart-2: #38bdf8;
+  --chart-3: #22d3ee;
+  --chart-4: #94a3b8;
+  --chart-5: #f1f5f9;
+  --sidebar: #111827;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #60a5fa;
+  --sidebar-primary-foreground: #0a0e1a;
+  --sidebar-accent: #1f2937;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: #1f2937;
+  --sidebar-ring: #60a5fa;
 }
 
 @layer base {
@@ -129,76 +128,66 @@
     min-width: 320px;
     overflow-x: clip;
     @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   * {
     @apply border-border outline-ring/50;
   }
+  /* Headings — Source Serif 4, tighter tracking, balanced wrapping */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  /* Restrain link defaults; explicit styles handle the rest */
+  a {
+    color: inherit;
+  }
 }
 
-/* Card panel - using regular CSS instead of @apply for custom properties */
-.ice-panel {
-  border-radius: 1rem;
+/* Card panel — flat, subtle border, no shadow drama */
+.ise-panel {
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background-color: var(--card);
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
-/* Pill badge like instant-web */
+/* Pill — neutral by default, subtle */
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
-  color: var(--primary);
-  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
-}
-
-.pill-dark {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.pill-muted {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   background-color: var(--muted);
   color: var(--muted-foreground);
   border: 1px solid var(--border);
 }
 
-/* Section backgrounds */
-.section-white {
-  background-color: #ffffff;
+.pill-primary {
+  background-color: color-mix(in srgb, var(--primary) 8%, transparent);
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 18%, transparent);
 }
 
-.section-gray {
-  background-color: #f3f4f6;
+.pill-on-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Hero gradient */
-.ice-hero {
-  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f0f9ff 100%);
+/* Section backgrounds — neutral tones, no gradients */
+.section-surface {
+  background-color: var(--card);
+}
+
+.section-muted {
+  background-color: var(--muted);
 }

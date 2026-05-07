@@ -34,7 +34,7 @@ export default function DebugPage() {
         </p>
       </Section>
 
-      <section className="py-12 section-white">
+      <section className="py-12 section-surface">
         <Container>
           <div className="space-y-12">
             <Reveal>
@@ -42,7 +42,7 @@ export default function DebugPage() {
                 <h2 className="text-lg font-semibold">Pill Badges</h2>
                 <div className="flex flex-wrap gap-3">
                   <div className="pill">Default Pill</div>
-                  <div className="pill-muted">Muted Pill</div>
+                  <div className="pill pill-primary">Primary Pill</div>
                 </div>
               </div>
             </Reveal>
@@ -68,7 +68,7 @@ export default function DebugPage() {
             <Reveal delayMs={120}>
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold">Card</h2>
-                <Card className="ice-panel">
+                <Card className="ise-panel">
                   <CardHeader>
                     <CardTitle>Card title</CardTitle>
                     <CardDescription>Card description for visual hierarchy.</CardDescription>

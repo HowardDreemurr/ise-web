@@ -78,7 +78,7 @@ export function TimelinePanel({ items, className, ...props }: TimelinePanelProps
 
       {/* Right: Detail panel - scrollable */}
       <div className="min-h-[400px] lg:min-h-[500px]">
-        <Card className="ice-panel overflow-hidden h-full flex flex-col">
+        <Card className="ise-panel overflow-hidden h-full flex flex-col">
           {activeItem?.imageUrl && (
             <div className="relative h-48 md:h-56 shrink-0">
               <img

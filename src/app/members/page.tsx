@@ -24,7 +24,7 @@ function getInitials(name: string) {
 
 function MemberCard({ member, showCurrentPosition = false }: { member: Member; showCurrentPosition?: boolean }) {
   return (
-    <Card className="ice-panel h-full w-full max-w-full overflow-hidden">
+    <Card className="ise-panel h-full w-full max-w-full overflow-hidden">
       <CardContent className="w-full max-w-full space-y-2 overflow-hidden p-4">
         {/* Image + Name/Period row */}
         <div className="flex min-w-0 items-center gap-3">
@@ -110,7 +110,7 @@ export default function MembersPage() {
         </p>
       </Section>
 
-      <section className="section-white py-12 md:py-16">
+      <section className="section-surface py-12 md:py-16">
         <Container>
           {/* Lead Profile - Full Width */}
           <Reveal>

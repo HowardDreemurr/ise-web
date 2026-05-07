@@ -24,7 +24,7 @@ export default function ImpactPage() {
       </Section>
 
       {/* Industry Impacts */}
-      <section className="py-12 md:py-16 section-white">
+      <section className="py-12 md:py-16 section-surface">
         <Container>
           <Reveal>
             <h3 className="font-serif text-2xl font-semibold mb-8">Industry Impacts</h3>
@@ -33,7 +33,7 @@ export default function ImpactPage() {
           <div className="grid gap-6 md:grid-cols-2">
             {industryImpacts.map((impact, idx) => (
               <Reveal key={impact.id} delayMs={idx * 60}>
-                <Card className="ice-panel h-full">
+                <Card className="ise-panel h-full">
                   <CardHeader>
                     <div className="flex items-start justify-between gap-3">
                       <CardTitle className="text-lg">{impact.title}</CardTitle>
@@ -70,12 +70,12 @@ export default function ImpactPage() {
         </p>
       </Section>
 
-      <section className="py-12 md:py-16 section-gray">
+      <section className="py-12 md:py-16 section-muted">
         <Container>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {awards.map((award, idx) => (
               <Reveal key={award.id} delayMs={idx * 40}>
-                <Card className="ice-panel h-full">
+                <Card className="ise-panel h-full">
                   <CardHeader className="pb-2">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
                       <svg

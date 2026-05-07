@@ -79,7 +79,7 @@ export function LeadProfile({ profile }: LeadProfileProps) {
   }
 
   return (
-    <Card className="ice-panel overflow-hidden md:col-span-2">
+    <Card className="ise-panel overflow-hidden md:col-span-2">
       <CardContent className="p-4 sm:p-5">
         {/* Two columns: Profile+Stats on left, Sections on right */}
         <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">

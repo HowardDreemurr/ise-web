@@ -80,11 +80,11 @@ export default function Home() {
         </p>
       </Section>
 
-      <section className="pb-12 md:pb-16 section-white">
+      <section className="pb-12 md:pb-16 section-surface">
         <Container>
           <div className="grid gap-8 md:grid-cols-3">
             <Reveal>
-              <Card className="ice-panel h-full text-center p-6">
+              <Card className="ise-panel h-full text-center p-6">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,7 +102,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delayMs={60}>
-              <Card className="ice-panel h-full text-center p-6">
+              <Card className="ise-panel h-full text-center p-6">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -120,7 +120,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delayMs={120}>
-              <Card className="ice-panel h-full text-center p-6">
+              <Card className="ise-panel h-full text-center p-6">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +171,7 @@ export default function Home() {
       </Section>
 
       {/* Research Areas Preview */}
-      <Section className="py-12 md:py-16 section-gray">
+      <Section className="py-12 md:py-16 section-muted">
 
           <Reveal>
             <div className="flex items-center justify-between mb-8">
@@ -184,7 +184,7 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-2">
             {researchAreas.map((area, idx) => (
               <Reveal key={area.id} delayMs={idx * 60}>
-                <Card className="ice-panel h-full">
+                <Card className="ise-panel h-full">
                   <CardHeader>
                     <div className="pill w-fit mb-2">{idx + 1}</div>
                     <CardTitle>{area.title}</CardTitle>
