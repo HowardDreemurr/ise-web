@@ -10,9 +10,11 @@ import {
   Reveal,
   Section,
 } from "@/components"
-import { industryImpacts, awards } from "@/data/impact"
+import { getAwards, getIndustryImpacts } from "@/lib/content"
 
 export default function ImpactPage() {
+  const industryImpacts = getIndustryImpacts()
+  const awards = getAwards()
   return (
     <div className="bg-background">
       <Section kicker="Impact" title="Real-World Applications" bg="primary">

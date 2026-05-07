@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 import {
   Badge,
@@ -18,9 +19,13 @@ import {
   Separator,
   StatCard,
 } from "@/components"
-import { leadProfessor } from "@/data/leadProfessor"
+import { getLeadProfessor } from "@/lib/content"
 
 export default function DebugPage() {
+  if (process.env.NODE_ENV === "production") {
+    notFound()
+  }
+  const leadProfessor = getLeadProfessor()
   return (
     <div className="bg-background">
       <Section kicker="Debug" title="Component Playground" colorIndex={0}>

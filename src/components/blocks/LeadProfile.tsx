@@ -9,7 +9,7 @@ import {
   StatCard,
 } from "@/components"
 import { cn } from "@/lib/utils"
-import type { LeadProfessor } from "@/data/leadProfessor"
+import type { LeadProfessor } from "@/lib/content"
 
 type LeadProfileProps = {
   profile: LeadProfessor

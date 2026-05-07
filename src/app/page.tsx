@@ -13,10 +13,10 @@ import {
   Reveal,
   Section,
 } from "@/components"
-import { researchAreas } from "@/data/researchAreas"
-import imgHeroVision from "@/app/assets/images/hero-vision.png"
+import { getResearchAreas } from "@/lib/content"
 
 export default function Home() {
+  const researchAreas = getResearchAreas()
   return (
     <div className="bg-background">
 
@@ -29,10 +29,11 @@ export default function Home() {
           className="absolute inset-0"
         />
         <Image
-          src={imgHeroVision}
+          src="/images/hero-vision.png"
           alt=""
           fill
           priority
+          sizes="100vw"
           className="object-cover object-left"
         />
 

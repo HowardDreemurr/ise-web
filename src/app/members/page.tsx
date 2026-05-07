@@ -11,8 +11,7 @@ import {
   Reveal,
   Section,
 } from "@/components"
-import { leadProfessor } from "@/data/leadProfessor"
-import { currentMembers, graduatedMembers, type Member } from "@/data/members"
+import { getCurrentMembers, getGraduatedMembers, getLeadProfessor, type Member } from "@/lib/content"
 
 function getInitials(name: string) {
   return name
@@ -98,6 +97,10 @@ function MemberSection({
 }
 
 export default function MembersPage() {
+  const leadProfessor = getLeadProfessor()
+  const currentMembers = getCurrentMembers()
+  const graduatedMembers = getGraduatedMembers()
+
   return (
     <div className="bg-background">
       <Section kicker="People" title="Meet the Team" bg="primary">
