@@ -7,8 +7,6 @@ import * as React from "react"
 import { Button } from "@/components"
 import { cn } from "@/lib/utils"
 
-import imgLogo from "@/app/assets/images/ise-logo.png"
-
 const nav = [
   { href: "/", label: "Vision" },
   { href: "/contribute", label: "Contribute" },
@@ -62,7 +60,7 @@ export function SiteHeader() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 z-10">
             <Image
-              src={imgLogo}
+              src="/images/ise-logo.png"
               alt="ISE Lab"
               width={50}
               height={50}
