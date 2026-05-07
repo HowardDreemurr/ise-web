@@ -222,9 +222,18 @@ function readDir(rel: string): string[] {
     .map((entry) => path.join(dir, entry.name))
 }
 
+function toIsoIfDate(v: unknown): unknown {
+  return v instanceof Date ? v.toISOString().slice(0, 10) : v
+}
+
 function readMatter<T>(filePath: string): { data: T; content: string; slug: string } {
   const raw = fs.readFileSync(filePath, "utf-8")
   const { data, content } = matter(raw)
+  // YAML auto-parses ISO dates to Date — coerce known date fields back to "YYYY-MM-DD".
+  const obj = data as Record<string, unknown>
+  for (const key of ["date", "endDate"]) {
+    if (key in obj) obj[key] = toIsoIfDate(obj[key])
+  }
   const slug = path.basename(filePath, ".md")
   return { data: data as T, content: content.trim(), slug }
 }
