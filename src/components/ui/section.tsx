@@ -60,39 +60,39 @@ export function Section({
       }}
       {...props}
     >
-      <Container>
-        {(kicker || title) && (
-          <div>
-            <Reveal>
-              {kicker && (
-                <div className={cn("mb-4", hasDarkBg ? "pill pill-on-dark" : "pill pill-primary")}>
-                  {kicker}
-                </div>
-              )}
-              {title && (
-                <h2
-                  className={cn(
-                    "font-serif text-3xl md:text-4xl font-semibold tracking-tight leading-tight",
-                    hasDarkBg ? "text-white" : "text-foreground"
-                  )}
-                >
-                  {title}
-                </h2>
-              )}
-            </Reveal>
-          </div>
-        )}
-        {children && (
-          <div
-            className={cn(
-              (kicker || title) && "mt-4",
-              hasDarkBg ? "text-white/90" : "text-muted-foreground"
+      {/* Heading area is wrapped in Container; children pass through untouched
+          so callers can use their own Container (or none) without double padding. */}
+      {(kicker || title) && (
+        <Container>
+          <Reveal>
+            {kicker && (
+              <div className={cn("mb-4", hasDarkBg ? "pill pill-on-dark" : "pill pill-primary")}>
+                {kicker}
+              </div>
             )}
-          >
-            {children}
-          </div>
-        )}
-      </Container>
+            {title && (
+              <h2
+                className={cn(
+                  "font-serif text-3xl md:text-4xl font-semibold tracking-tight leading-tight",
+                  hasDarkBg ? "text-white" : "text-foreground"
+                )}
+              >
+                {title}
+              </h2>
+            )}
+          </Reveal>
+        </Container>
+      )}
+      {children && (
+        <div
+          className={cn(
+            (kicker || title) && "mt-4",
+            hasDarkBg ? "text-white/90" : "text-muted-foreground"
+          )}
+        >
+          {children}
+        </div>
+      )}
     </section>
   )
 }
