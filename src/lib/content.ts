@@ -7,7 +7,7 @@ const CONTENT_ROOT = path.join(process.cwd(), "content")
 /* -------- People ---------------------------------------------------------- */
 
 export type PersonType =
-  | "Lead"
+  | "Staff"
   | "PostDoc"
   | "PhD"
   | "MPhil"
@@ -262,12 +262,14 @@ export function getPeople(): Person[] {
   })
 }
 
+/** Convenience — first Staff member with a Lead-Professor-shaped role.
+ *  Kept for legacy callers; new code should treat Staff as a normal group. */
 export function getLead(): Person | undefined {
-  return getPeople().find((p) => p.type === "Lead")
+  return getPeople().find((p) => p.type === "Staff")
 }
 
 export function getCurrentPeople(): Person[] {
-  const currentTypes: PersonType[] = ["Lead", "PostDoc", "PhD", "MPhil"]
+  const currentTypes: PersonType[] = ["Staff", "PostDoc", "PhD", "MPhil"]
   return getPeople().filter((p) => currentTypes.includes(p.type))
 }
 

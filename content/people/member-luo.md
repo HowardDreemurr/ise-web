@@ -1,6 +1,6 @@
 ---
 name: Chunbo Luo
-type: Lead
+type: Staff
 role: Lead Professor, ISE Group
 affiliation: University of Exeter
 email: C.Luo@exeter.ac.uk

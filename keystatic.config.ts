@@ -46,7 +46,7 @@ export default config({
         type: fields.select({
           label: "Type",
           options: [
-            { label: "Lead", value: "Lead" },
+            { label: "Staff", value: "Staff" },
             { label: "PostDoc", value: "PostDoc" },
             { label: "PhD", value: "PhD" },
             { label: "MPhil", value: "MPhil" },
