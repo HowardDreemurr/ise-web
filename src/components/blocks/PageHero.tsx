@@ -61,14 +61,24 @@ export function PageHero({
       )}
     >
       {imageSrc && (
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-left"
-        />
+        <>
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-left"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(2,3,12,0.78) 0%, rgba(2,3,12,0.55) 45%, rgba(2,3,12,0.10) 100%)",
+            }}
+          />
+        </>
       )}
 
       <Container className="relative z-10 py-12 md:py-16">
