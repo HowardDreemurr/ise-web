@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Archivo_Black, Inter, Source_Serif_4, Space_Grotesk } from "next/font/google";
 import { SiteChrome } from "@/components";
 import "./globals.css";
 
@@ -13,6 +13,22 @@ const iseSerif = Source_Serif_4({
   variable: "--font-ise-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Wordmark display: heavy condensed face for "ISE LAB" lockup.
+const iseWordmark = Archivo_Black({
+  variable: "--font-ise-wordmark",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+// Wordmark tagline: confident sans for "INTELLIGENT SENSING FOR ENVIRONMENT".
+const iseWordmarkTag = Space_Grotesk({
+  variable: "--font-ise-wordmark-tag",
+  subsets: ["latin"],
+  weight: ["700"],
   display: "swap",
 });
 
@@ -67,7 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${iseSans.variable} ${iseSerif.variable} antialiased`}>
+      <body className={`${iseSans.variable} ${iseSerif.variable} ${iseWordmark.variable} ${iseWordmarkTag.variable} antialiased`}>
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
