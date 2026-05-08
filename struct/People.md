@@ -1,11 +1,11 @@
 # People
 
-PI, current members, alumni, affiliated. **One schema, one `people` collection.** A `type` field discriminates roles.
+PI, research staff, students, alumni, affiliated. **One schema, one `people` collection.** A `type` field discriminates roles.
 
-PI has no special UI section — they appear as a regular card under **Current Members** on `/people`, just sorted to the top because `type: Lead`. (No more `lead` singleton in Keystatic.)
+PI has no special UI section — they appear as a regular card under **Current Members** on `/people` with `type: Staff` (which also covers research programmers, RAs, and any non-academic staff). No `lead` singleton in Keystatic.
 
-People page groups:
-- **Current Members** (types: `Lead`, `PostDoc`, `PhD`, `MPhil`) — Lead first, then by start year
+People page sub-tabs:
+- **Current Members** (types: `Staff`, `PostDoc`, `PhD`, `MPhil`) — Staff first, then by start year
 - **Alumni** (type: `Alumni`)
 - **Affiliated Faculty & Collaborators** (type: `Affiliated`)
 
@@ -14,7 +14,7 @@ People page groups:
 ```yaml
 id:          member-luo              # slug, also filename
 name:        Chunbo Luo
-type:        Lead                    # Lead | PostDoc | PhD | MPhil | Affiliated | Alumni
+type:        Staff                   # Staff | PostDoc | PhD | MPhil | Affiliated | Alumni
 role:        Lead Professor, ISE Group
 affiliation: University of Exeter
 email:       c.luo@exeter.ac.uk
@@ -63,7 +63,7 @@ There is **no individual person page**. Cards on `/people` are terminal — they
 ```yaml
 id: member-luo
 name: Chunbo Luo
-type: Lead
+type: Staff
 role: Lead Professor, ISE Group
 affiliation: University of Exeter
 email: c.luo@exeter.ac.uk
@@ -93,7 +93,7 @@ interests: [Malware detection, Federated learning]
 
 ## Metrics fetching
 
-`links.scholar` is **optional for every type** (Lead, PostDoc, PhD, MPhil, Affiliated, Alumni). Citation count, h-index, and i10-index are **derived** — never stored in the markdown.
+`links.scholar` is **optional for every type** (Staff, PostDoc, PhD, MPhil, Affiliated, Alumni). Citation count, h-index, and i10-index are **derived** — never stored in the markdown.
 
 - If `links.scholar` is set → metrics get tracked and rendered as a compact line on the card.
 - If absent → no metrics line, no impact on layout.
@@ -106,7 +106,7 @@ Fallback: if a fetch fails for one person, the previous value is reused. If the 
 
 | Current location | What to do |
 |---|---|
-| `content/lead/index.md` (singleton, 26K tokens) | → become a regular `content/people/member-luo.md` with `type: Lead`. Drop singleton from Keystatic. |
+| `content/lead/index.md` (singleton, 26K tokens) | → become a regular `content/people/member-luo.md` with `type: Staff`. Drop singleton from Keystatic. |
 | `content/lead/index.md` `sections.Externally Funded Projects` | → split into `content/projects/*.md` (one per grant); store `pi: member-luo` or `coi: [...]` there |
 | `content/lead/index.md` `sections.Editorial Service`, `Conference Roles` | → `content/events/*.md` with `type: editorial` or `type: chair`, `organizers: [member-luo]` |
 | `content/lead/index.md` `sections.Teaching` | → static page or drop |

@@ -34,7 +34,7 @@ abstract: |
 A single ordered array is the only safe representation: academic papers care about position (first author, last author). Splitting into `internal` + `external` arrays would lose order.
 
 Each entry has a `type` discriminator:
-- `member` → `id` references a `People` collection entry (any type: Lead/PostDoc/PhD/MPhil/Affiliated/Alumni)
+- `member` → `id` references a `People` collection entry (any type: Staff/PostDoc/PhD/MPhil/Affiliated/Alumni)
 - `external` → `name` is a display string only
 
 Display rule: `member` renders as a name label (no link, since we have no detail page); `external` renders as plain text. Order preserved verbatim. Hover/title attribute on members may show their role.

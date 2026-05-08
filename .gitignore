@@ -50,3 +50,6 @@ proj_req.md
 
 # Claude Code local working dir (settings, transcripts)
 .claude/
+
+# Extracted Claude Design handoff bundles (kept local, not source-of-truth)
+.design-pkg/

@@ -21,7 +21,7 @@
 | File | What it holds |
 |---|---|
 | **[People.md](./People.md)** | Master schema: PI, members, alumni, affiliated |
-| &nbsp;&nbsp;├ [People/CurrentMembers.md](./People/CurrentMembers.md) | Sub-tab: Lead + PostDoc + PhD + MPhil |
+| &nbsp;&nbsp;├ [People/CurrentMembers.md](./People/CurrentMembers.md) | Sub-tab: Staff + PostDoc + PhD + MPhil |
 | &nbsp;&nbsp;├ [People/Alumni.md](./People/Alumni.md) | Sub-tab: graduates with `currentPosition` |
 | &nbsp;&nbsp;└ [People/Affiliated.md](./People/Affiliated.md) | Sub-tab: external collaborators |
 | **[Resources.md](./Resources.md)** | Master schema: Code, Data, Tools |

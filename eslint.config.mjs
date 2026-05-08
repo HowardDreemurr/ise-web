@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Node CLI scripts (CommonJS allowed):
     "scripts/**",
+    // Extracted Claude Design handoff bundle (read-only reference)
+    ".design-pkg/**",
   ]),
 ]);
 

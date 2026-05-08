@@ -27,16 +27,33 @@ Same-year ties: sort by name alphabetical.
 
 ## Card layout
 
+Same horizontal `PersonCard` template used on `/people/current` (160px photo column + body), with the alumni-specific `Now: <currentPosition>` line in the meta row.
+
 ```
-┌─────────────────────────────────────┐
-│  [photo]   Name           [Alumni]  │
-│            period (closed)          │
-│            Now: currentPosition     │← prominent, alumni-specific
-│            [scholar] [linkedin]     │
-└─────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│ [PHOTO]    Name                                    │
+│ [badge]    Role (e.g. "Doctoral Researcher")       │
+│            Period (closed) · Now: …                │
+│            Research: tag · tag                     │
+│ ──────────────────────────────────────────────     │
+│ [scholar] [linkedin]                               │
+└────────────────────────────────────────────────────┘
 ```
 
-Photo is optional — falls back to initials avatar (same default as current members). Email is hidden by default (no longer @exeter). Citation metrics are skipped on this tab; the page focuses on placement.
+Photo is optional — falls back to initials over a navy→cerulean gradient. Email hidden by default (no longer @exeter). Citation metrics are skipped on this tab; the page focuses on placement.
+
+## Badge label
+
+The badge **does not say "Alumni"** for everyone — Alumni is an umbrella, like Staff. Each card's badge derives from the person's `role` field through the `ROLE_SHORT_FORMS` dictionary (see [CurrentMembers § Badge label rules](./CurrentMembers.md#badge-label-rules)):
+
+| Role string | Badge |
+|---|---|
+| `MPhil (Lead supervision)` | `MPhil` |
+| `Postdoctoral Research Fellow` | `PostDoc` |
+| `PhD Candidate` | `PhD` |
+| `BSc Project Student` | `Undergrad` |
+
+The umbrella label `Alumni` appears only as the section heading on the page, never on individual cards.
 
 ```yaml
 id: member-carpenter
