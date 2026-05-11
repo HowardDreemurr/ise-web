@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/blocks/Breadcrumbs"
 import { Container } from "@/components/ui/container"
 import { Reveal } from "@/components/ui/reveal"
 import { cn } from "@/lib/utils"
@@ -6,6 +7,9 @@ type SubPageHeroProps = {
   eyebrow?: string
   title: string
   description?: string
+  /** Override the last breadcrumb's label — pass the entity title on a
+   *  dynamic detail route so the trail doesn't end on a raw slug. */
+  crumbLabel?: string
   className?: string
 }
 
@@ -22,6 +26,7 @@ export function SubPageHero({
   eyebrow,
   title,
   description,
+  crumbLabel,
   className,
 }: SubPageHeroProps) {
   return (
@@ -49,6 +54,7 @@ export function SubPageHero({
 
       <Container className="relative z-[1] py-10 md:py-12">
         <div className="max-w-3xl text-white">
+          <Breadcrumbs currentLabel={crumbLabel} />
           {eyebrow && (
             <Reveal>
               <span className="pill pill-on-dark mb-3">{eyebrow}</span>

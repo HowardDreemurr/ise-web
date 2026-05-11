@@ -6,9 +6,11 @@ import {
   MeasuredPeopleSections,
   PeopleGrid,
   Section,
+  SectionNav,
   SubPageHero,
 } from "@/components"
 import { getCurrentPeople, type PersonType } from "@/lib/content"
+import { slugify } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Current",
@@ -57,7 +59,7 @@ export default function CurrentMembersPage() {
         if (ya !== yb) return yb - ya
         return a.name.localeCompare(b.name)
       })
-    return { label, items }
+    return { id: slugify(label), label, items }
   }).filter((s) => s.items.length > 0)
 
   return (
@@ -67,6 +69,8 @@ export default function CurrentMembersPage() {
         title="Current members"
         description="The PI and the in-residence researchers driving the group's work."
       />
+
+      <SectionNav items={sections.map((s) => ({ id: s.id, label: s.label }))} />
 
       {all.length === 0 ? (
         <Section className="py-12">
@@ -79,8 +83,8 @@ export default function CurrentMembersPage() {
         <Section className="py-12 md:py-16">
           <Container>
             <MeasuredPeopleSections className="space-y-12">
-              {sections.map(({ label, items }) => (
-                <div key={label} className="space-y-5">
+              {sections.map(({ id, label, items }) => (
+                <div key={id} id={id} className="scroll-mt-[132px] space-y-5">
                   <h2 className="font-serif text-2xl font-semibold tracking-tight">
                     {label}{" "}
                     <span className="text-base font-normal text-muted-foreground">

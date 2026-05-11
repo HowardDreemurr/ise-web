@@ -6,6 +6,7 @@ import {
   EventCard,
   Reveal,
   Section,
+  SectionNav,
   SubPageHero,
 } from "@/components"
 import { getEvents, type EventType, type GroupEvent } from "@/lib/content"
@@ -45,6 +46,7 @@ export default function EventsPage() {
     editorial: [],
   }
   for (const ev of events) byType[ev.type].push(ev)
+  const activeTypes = TYPE_ORDER.filter((t) => byType[t].length > 0)
 
   return (
     <div className="bg-background">
@@ -52,6 +54,10 @@ export default function EventsPage() {
         eyebrow="Community / Events"
         title="Events & service"
         description={`${events.length} academic activities — keynotes, workshops, conference chair appointments and editorial roles.`}
+      />
+
+      <SectionNav
+        items={activeTypes.map((t) => ({ id: t, label: TYPE_LABEL[t] }))}
       />
 
       {events.length === 0 ? (
@@ -64,11 +70,10 @@ export default function EventsPage() {
       ) : (
         <Section className="py-12 md:py-16">
           <Container className="space-y-12">
-            {TYPE_ORDER.map((type) => {
+            {activeTypes.map((type) => {
               const items = byType[type]
-              if (items.length === 0) return null
               return (
-                <div key={type} className="space-y-5">
+                <div key={type} id={type} className="scroll-mt-[132px] space-y-5">
                   <h2 className="font-serif text-2xl font-semibold tracking-tight">
                     {TYPE_LABEL[type]}{" "}
                     <span className="text-base font-normal text-muted-foreground">

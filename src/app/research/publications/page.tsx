@@ -9,6 +9,7 @@ import {
   EmptyState,
   Reveal,
   Section,
+  SectionNav,
   SubPageHero,
 } from "@/components"
 import { getPeople, getPublications, type AuthorRef, type Publication } from "@/lib/content"
@@ -87,6 +88,15 @@ export default function PublicationsPage() {
         description={`${pubs.length} papers across journals, conferences, workshops, and book chapters. Featured first, then by year (descending).`}
       />
 
+      <SectionNav
+        items={[
+          ...(featured.length > 0
+            ? [{ id: "featured-publications", label: "Featured" }]
+            : []),
+          { id: "all-publications", label: "All papers" },
+        ]}
+      />
+
       {pubs.length === 0 ? (
         <Section className="py-12">
           <EmptyState
@@ -98,9 +108,10 @@ export default function PublicationsPage() {
         <>
           {featured.length > 0 && (
             <Section
+              id="featured-publications"
               kicker="Highlights"
               title="Featured publications"
-              className="py-12"
+              className="scroll-mt-[132px] py-12"
             >
               <Container>
                 <div className="grid gap-4 md:grid-cols-2">
@@ -115,9 +126,10 @@ export default function PublicationsPage() {
           )}
 
           <Section
+            id="all-publications"
             kicker="All papers"
             title="All publications"
-            className="section-muted py-12 md:py-16"
+            className="scroll-mt-[132px] section-muted py-12 md:py-16"
           >
             <Container>
               <div className="grid gap-4 md:grid-cols-2">

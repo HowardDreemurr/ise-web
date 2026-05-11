@@ -1,6 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
+import { BackToTop } from "./BackToTop"
 import { SiteFooter } from "./SiteFooter"
 import { SiteHeader } from "./SiteHeader"
 
@@ -19,6 +20,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
+      <BackToTop />
     </div>
   )
 }

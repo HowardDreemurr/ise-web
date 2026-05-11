@@ -8,6 +8,7 @@ import {
   EmptyState,
   Reveal,
   Section,
+  SectionNav,
   SubPageHero,
 } from "@/components"
 import {
@@ -110,6 +111,9 @@ export default function ProjectsPage() {
     { status: "under-review" as const, label: "Under review" },
     { status: "planned" as const, label: "Planned" },
   ]
+  const activeGroups = groups
+    .map((g) => ({ ...g, items: grouped(g.status) }))
+    .filter((g) => g.items.length > 0)
 
   return (
     <div className="bg-background">
@@ -117,6 +121,10 @@ export default function ProjectsPage() {
         eyebrow="Research / Projects"
         title="Funded projects"
         description={`${projects.length} grants — actively running, completed, under review, or in preparation.`}
+      />
+
+      <SectionNav
+        items={activeGroups.map((g) => ({ id: g.status, label: g.label }))}
       />
 
       {projects.length === 0 ? (
@@ -129,11 +137,9 @@ export default function ProjectsPage() {
       ) : (
         <Section className="py-12 md:py-16">
           <Container className="space-y-12">
-            {groups.map(({ status, label }) => {
-              const items = grouped(status)
-              if (items.length === 0) return null
+            {activeGroups.map(({ status, label, items }) => {
               return (
-                <div key={status} className="space-y-4">
+                <div key={status} id={status} className="scroll-mt-[132px] space-y-4">
                   <h2 className="font-serif text-2xl font-semibold tracking-tight">
                     {label}{" "}
                     <span className="text-base font-normal text-muted-foreground">

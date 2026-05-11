@@ -11,6 +11,7 @@ import {
   EmptyState,
   Reveal,
   Section,
+  SectionNav,
   SubPageHero,
 } from "@/components"
 import { getAwards, getIndustryImpacts, getPeople } from "@/lib/content"
@@ -34,10 +35,18 @@ export default function ImpactPage() {
         description="Industry collaborations and group recognitions — translating intelligent sensing into deployed systems and policy outcomes."
       />
 
+      <SectionNav
+        items={[
+          { id: "industry-collaborations", label: "Industry" },
+          { id: "awards", label: "Awards" },
+        ]}
+      />
+
       <Section
+        id="industry-collaborations"
         kicker="Industry"
         title="Industry collaborations"
-        className="py-12 md:py-16"
+        className="scroll-mt-[132px] py-12 md:py-16"
       >
         <Container>
           {impacts.length === 0 ? (
@@ -107,9 +116,10 @@ export default function ImpactPage() {
       </Section>
 
       <Section
+        id="awards"
         kicker="Recognition"
         title="Awards & recognition"
-        className="section-muted py-12 md:py-16"
+        className="scroll-mt-[132px] section-muted py-12 md:py-16"
       >
         <Container>
           {awards.length === 0 ? (
