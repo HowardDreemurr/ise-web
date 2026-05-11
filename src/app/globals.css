@@ -191,3 +191,28 @@
 .section-muted {
   background-color: var(--muted);
 }
+
+/* Deep-link landing flash — when a byline / cross-ref jumps to an element
+   carrying `data-anchor-flash`, pulse a ring on it so the target is obvious. */
+@keyframes ise-target-flash {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 55%, transparent);
+  }
+  12% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--primary) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+[data-anchor-flash]:target {
+  animation: ise-target-flash 2.4s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anchor-flash]:target {
+    animation: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 50%, transparent);
+  }
+}

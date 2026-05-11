@@ -41,9 +41,12 @@ export type Person = {
 
 /* -------- Publications ---------------------------------------------------- */
 
-export type AuthorRef =
-  | { type: "member"; id: string }
-  | { type: "external"; name: string }
+/** Keystatic's `array(conditional(...))` shape: `discriminant` picks the branch,
+ *  `value` is the member id (member) or the free-text name (external). */
+export type AuthorRef = {
+  discriminant: "member" | "external"
+  value: string
+}
 
 export type PublicationType =
   | "journal"
@@ -260,6 +263,28 @@ export function getPeople(): Person[] {
       bio: content || undefined,
     }
   })
+}
+
+/** Which `/people/*` sub-tab a person of a given type appears on. */
+const PEOPLE_TAB: Record<PersonType, string> = {
+  Staff: "current",
+  PostDoc: "current",
+  PhD: "current",
+  MPhil: "current",
+  Alumni: "alumni",
+  Affiliated: "affiliated",
+}
+
+/** Map of person id → { name, href }, where `href` deep-links to that person's
+ *  card on the relevant `/people/*` sub-tab (the cards carry matching `id`s).
+ *  Used to make author / PI names link back to the team page. */
+export function getPeopleIndex(): Map<string, { name: string; href: string }> {
+  return new Map(
+    getPeople().map((p) => [
+      p.id,
+      { name: p.name, href: `/people/${PEOPLE_TAB[p.type]}#${p.id}` },
+    ]),
+  )
 }
 
 /** Convenience — first Staff member with a Lead-Professor-shaped role.

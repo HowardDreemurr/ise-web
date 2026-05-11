@@ -11,11 +11,11 @@ import {
   Section,
   SectionIntro,
 } from "@/components"
-import { getNews, getPeople, getPublications } from "@/lib/content"
+import { getNews, getPeopleIndex, getPublications } from "@/lib/content"
 
 export default function Home() {
   const news = getNews().slice(0, 4)
-  const peopleById = new Map(getPeople().map((p) => [p.id, p.name]))
+  const peopleById = getPeopleIndex()
   // Pinned via `featured: true` on a publication in Keystatic; newest first.
   const featuredWork = getPublications()
     .filter((p) => p.featured)

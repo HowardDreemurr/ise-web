@@ -10,7 +10,7 @@ import {
   SubPageHero,
   type ChronologyEntry,
 } from "@/components"
-import { getPeople, getPublications } from "@/lib/content"
+import { getPeopleIndex, getPublications } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Publications",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function PublicationsPage() {
   const pubs = getPublications()
-  const peopleById = new Map(getPeople().map((p) => [p.id, p.name]))
+  const peopleById = getPeopleIndex()
   const featured = pubs.filter((p) => p.featured)
   const rest = pubs.filter((p) => !p.featured)
 
@@ -53,7 +53,7 @@ export default function PublicationsPage() {
               <Container>
                 <div className="grid auto-rows-fr gap-4 md:grid-cols-2">
                   {featured.map((p, idx) => (
-                    <Reveal key={p.id} delayMs={idx * 40} className="h-full">
+                    <Reveal key={p.id} delayMs={Math.min(idx, 8) * 30} className="h-full">
                       <PublicationCard pub={p} peopleById={peopleById} />
                     </Reveal>
                   ))}

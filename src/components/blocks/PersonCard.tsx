@@ -151,9 +151,14 @@ export function PersonCard({
 
   return (
     <article
+      id={person.id}
       data-person-card
+      data-anchor-flash
       className={cn(
-        "ise-panel grid h-full overflow-hidden",
+        // scroll-mt clears the sticky header + (on /people/current) the
+        // section nav, so deep links from author bylines land cleanly;
+        // data-anchor-flash makes the card pulse a ring when it's the :target.
+        "ise-panel grid h-full scroll-mt-[132px] overflow-hidden",
         className,
       )}
       style={{ gridTemplateColumns: "minmax(120px, 160px) 1fr" }}
