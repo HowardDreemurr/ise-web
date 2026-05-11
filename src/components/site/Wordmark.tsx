@@ -40,14 +40,18 @@ export function Wordmark({
       className={cn("block h-auto", className)}
       style={{ width }}
     >
+      {/* font-family must go through `style` (a CSS property), not the SVG
+          presentation attribute — `var()` does not resolve in SVG attributes,
+          which would silently drop the next/font face and leave it preloaded
+          but unused. */}
       <text
         x="0"
         y="208"
         textLength="1000"
         lengthAdjust="spacingAndGlyphs"
-        fontFamily="var(--font-ise-wordmark), 'Archivo Black', system-ui, sans-serif"
         fontSize="240"
         fill={topFill}
+        style={{ fontFamily: "var(--font-ise-wordmark), 'Archivo Black', system-ui, sans-serif" }}
       >
         ISE LAB
       </text>
@@ -56,11 +60,11 @@ export function Wordmark({
         y="278"
         textLength="1000"
         lengthAdjust="spacingAndGlyphs"
-        fontFamily="var(--font-ise-wordmark-tag), 'Space Grotesk', system-ui, sans-serif"
         fontWeight={700}
         fontSize="42"
         letterSpacing="2"
         fill={bottomFill}
+        style={{ fontFamily: "var(--font-ise-wordmark-tag), 'Space Grotesk', system-ui, sans-serif" }}
       >
         INTELLIGENT SENSING FOR ENVIRONMENT
       </text>
