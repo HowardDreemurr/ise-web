@@ -4,12 +4,12 @@ import {
   Badge,
   Card,
   CardContent,
+  Chronology,
   Container,
   EmptyState,
-  Reveal,
   Section,
-  SectionNav,
   SubPageHero,
+  type ChronologyEntry,
 } from "@/components"
 import {
   getPeople,
@@ -94,71 +94,61 @@ function ProjectCard({
   )
 }
 
-const PERIOD_START = (p: Project) => p.period?.split(/[\s\-]+/)[0] ?? ""
+const startYear = (p: Project) => {
+  const m = p.period?.match(/\d{4}/)
+  return m ? parseInt(m[0], 10) : 0
+}
+
+// Reading order within a year: live work first, finished work last.
+const STATUS_RANK: Record<Project["status"], number> = {
+  active: 0,
+  "under-review": 1,
+  planned: 2,
+  completed: 3,
+  cancelled: 4,
+}
 
 export default function ProjectsPage() {
   const projects = getProjects()
   const peopleById = new Map(getPeople().map((p) => [p.id, p.name]))
 
-  const grouped = (status: Project["status"]) =>
-    projects
-      .filter((p) => p.status === status)
-      .sort((a, b) => (PERIOD_START(b) > PERIOD_START(a) ? 1 : -1))
+  const sorted = [...projects].sort((a, b) => {
+    const ya = startYear(a)
+    const yb = startYear(b)
+    if (ya !== yb) return yb - ya
+    if (STATUS_RANK[a.status] !== STATUS_RANK[b.status])
+      return STATUS_RANK[a.status] - STATUS_RANK[b.status]
+    return a.title.localeCompare(b.title)
+  })
 
-  const groups = [
-    { status: "active" as const, label: "Active" },
-    { status: "completed" as const, label: "Completed" },
-    { status: "under-review" as const, label: "Under review" },
-    { status: "planned" as const, label: "Planned" },
-  ]
-  const activeGroups = groups
-    .map((g) => ({ ...g, items: grouped(g.status) }))
-    .filter((g) => g.items.length > 0)
+  const entries: ChronologyEntry[] = sorted.map((p) => ({
+    id: p.id,
+    year: startYear(p),
+    label: p.acronym ? `${p.acronym} — ${p.title}` : p.title,
+    node: <ProjectCard project={p} peopleById={peopleById} />,
+  }))
 
   return (
     <div className="bg-background">
       <SubPageHero
         eyebrow="Research / Projects"
         title="Funded projects"
-        description={`${projects.length} grants — actively running, completed, under review, or in preparation.`}
+        description={`${projects.length} grants — a year-by-year archive of active, completed, and in-preparation work.`}
       />
 
-      <SectionNav
-        items={activeGroups.map((g) => ({ id: g.status, label: g.label }))}
-      />
-
-      {projects.length === 0 ? (
-        <Section className="py-12">
-          <EmptyState
-            title="No projects published yet."
-            description="Add project records via Keystatic to surface them here."
+      <Section className="py-12 md:py-16">
+        <Container>
+          <Chronology
+            entries={entries}
+            emptyState={
+              <EmptyState
+                title="No projects published yet."
+                description="Add project records via Keystatic to surface them here."
+              />
+            }
           />
-        </Section>
-      ) : (
-        <Section className="py-12 md:py-16">
-          <Container className="space-y-12">
-            {activeGroups.map(({ status, label, items }) => {
-              return (
-                <div key={status} id={status} className="scroll-mt-[132px] space-y-4">
-                  <h2 className="font-serif text-2xl font-semibold tracking-tight">
-                    {label}{" "}
-                    <span className="text-base font-normal text-muted-foreground">
-                      ({items.length})
-                    </span>
-                  </h2>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {items.map((p, idx) => (
-                      <Reveal key={p.id} delayMs={Math.min(idx, 6) * 30}>
-                        <ProjectCard project={p} peopleById={peopleById} />
-                      </Reveal>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </Container>
-        </Section>
-      )}
+        </Container>
+      </Section>
     </div>
   )
 }

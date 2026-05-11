@@ -55,15 +55,9 @@ Reverse (rendered, not stored):
 
 ## Page layout (`/research/publications`)
 
-Default sort: `year` descending, then by `featured` (featured first within year).
+Two blocks: a **"Featured publications"** grid up top (`featured===true`, year desc — these are *not* time-stamped in the archival sense, so they sit outside the chronology), then **"All publications"** rendered with the shared `Chronology` layout — left rail buckets every non-featured paper by `year` (collapsible, scroll-spied), right column lists them under year headings, newest first.
 
-Filter UI:
-- By year (auto-generated from data)
-- By research area (auto-generated)
-- By type (journal / conference / etc.)
-- Free-text search over title + venue + author names
-
-Each paper renders as a compact card showing: year badge · type badge · title · authors line · venue · DOI link · optional thumbnail. No "view detail" page — the DOI/link is the canonical source.
+Each paper renders as a compact card: year badge · type badge · title · authors line · venue · DOI link. No "view detail" page — the DOI/link is the canonical source. (Filter/search UI — by area, type, free text — is future work; the year rail is the only navigation today.)
 
 ## Migration from current state
 

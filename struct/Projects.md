@@ -73,14 +73,9 @@ Reverse (rendered, not stored):
 
 ## Page layout (`/research/projects`)
 
-Default group order: **Active** → **Completed**. Within each group, sort by `period` start descending.
+Shared `Chronology` layout — left rail buckets projects by **start year** of `period` (collapsible, scroll-spied), right column lists them under year headings, newest first. Within a year: live work first (`active` → `under-review` → `planned` → `completed` → `cancelled`), then by title. Status is just a badge on the card now, not a section.
 
-Filters:
-- By funder (auto-generated)
-- By research area (auto-generated)
-- By role (PI / CoI / any)
-
-Each project renders as a card showing: status badge · acronym (if present) · title · period · funder · amount · PI/CoIs · partners. No detail page — `summary` is shown inline; clicking the title goes to the funder's project page if `link` is present (TBD whether to add a `link` field).
+Each project renders as a card: status badge · acronym (if present) · title · period · funder · amount · PI/CoIs · partners · `summary` inline. No detail page. (Funder/area/role filters — future work.)
 
 ## Migration from current state
 

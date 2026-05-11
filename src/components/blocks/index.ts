@@ -1,4 +1,5 @@
 export * from "./Breadcrumbs"
+export * from "./Chronology"
 export * from "./EmptyState"
 export * from "./EventCard"
 export * from "./FeatureCard"

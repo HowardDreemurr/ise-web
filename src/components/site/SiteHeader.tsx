@@ -20,9 +20,9 @@ type NavItem =
 
 const nav: NavItem[] = [
   { href: "/", label: "Home" },
-  // Community currently surfaces only News (Events was retired) — keep it a
-  // plain leaf; restore a dropdown here if Seminars/Vacancies/etc. land.
-  { href: "/community", label: "Community" },
+  // News (formerly "Community" — Events was retired) — a plain leaf; restore a
+  // dropdown here if Seminars/Vacancies/etc. land.
+  { href: "/news", label: "News" },
   {
     label: "Research",
     href: "/research",

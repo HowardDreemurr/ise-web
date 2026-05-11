@@ -5,12 +5,13 @@ import {
   Badge,
   Card,
   CardContent,
+  Chronology,
   Container,
   EmptyState,
   Reveal,
   Section,
-  SectionNav,
   SubPageHero,
+  type ChronologyEntry,
 } from "@/components"
 import { getPeople, getPublications, type AuthorRef, type Publication } from "@/lib/content"
 
@@ -80,21 +81,20 @@ export default function PublicationsPage() {
   const featured = pubs.filter((p) => p.featured)
   const rest = pubs.filter((p) => !p.featured)
 
+  // getPublications() is sorted by year desc; Chronology buckets by year.
+  const restEntries: ChronologyEntry[] = rest.map((p) => ({
+    id: p.id,
+    year: p.year,
+    label: p.title,
+    node: <PublicationCard pub={p} peopleById={peopleById} />,
+  }))
+
   return (
     <div className="bg-background">
       <SubPageHero
         eyebrow="Research / Publications"
         title="Publications"
-        description={`${pubs.length} papers across journals, conferences, workshops, and book chapters. Featured first, then by year (descending).`}
-      />
-
-      <SectionNav
-        items={[
-          ...(featured.length > 0
-            ? [{ id: "featured-publications", label: "Featured" }]
-            : []),
-          { id: "all-publications", label: "All papers" },
-        ]}
+        description={`${pubs.length} papers across journals, conferences, workshops, and book chapters. Featured highlights first, then a year-by-year archive.`}
       />
 
       {pubs.length === 0 ? (
@@ -107,12 +107,7 @@ export default function PublicationsPage() {
       ) : (
         <>
           {featured.length > 0 && (
-            <Section
-              id="featured-publications"
-              kicker="Highlights"
-              title="Featured publications"
-              className="scroll-mt-[132px] py-12"
-            >
+            <Section kicker="Highlights" title="Featured publications" className="py-12">
               <Container>
                 <div className="grid gap-4 md:grid-cols-2">
                   {featured.map((p, idx) => (
@@ -126,19 +121,16 @@ export default function PublicationsPage() {
           )}
 
           <Section
-            id="all-publications"
-            kicker="All papers"
+            kicker={featured.length > 0 ? "All papers" : undefined}
             title="All publications"
-            className="scroll-mt-[132px] section-muted py-12 md:py-16"
+            className={
+              featured.length > 0
+                ? "section-muted py-12 md:py-16"
+                : "py-12 md:py-16"
+            }
           >
             <Container>
-              <div className="grid gap-4 md:grid-cols-2">
-                {rest.map((p, idx) => (
-                  <Reveal key={p.id} delayMs={Math.min(idx, 8) * 30}>
-                    <PublicationCard pub={p} peopleById={peopleById} />
-                  </Reveal>
-                ))}
-              </div>
+              <Chronology entries={restEntries} />
             </Container>
           </Section>
         </>

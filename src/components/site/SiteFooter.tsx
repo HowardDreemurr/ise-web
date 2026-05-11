@@ -12,7 +12,7 @@ const RESEARCH_LINKS: FooterLink[] = [
 ]
 
 const COMMUNITY_LINKS: FooterLink[] = [
-  { label: "News", href: "/community" },
+  { label: "News", href: "/news" },
   { label: "Seminars", href: "#" },
   { label: "Vacancies", href: "#" },
 ]

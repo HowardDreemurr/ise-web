@@ -9,9 +9,7 @@ import { cn } from "@/lib/utils"
 /** Path segment → human label. Anything not listed falls back to a capitalised
  *  version of the segment. Keep these in sync with the nav labels in SiteHeader. */
 const SEGMENT_LABELS: Record<string, string> = {
-  community: "Community",
   news: "News",
-  events: "Events",
   research: "Research",
   publications: "Publications",
   projects: "Projects",

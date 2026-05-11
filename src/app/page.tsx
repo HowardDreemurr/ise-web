@@ -35,7 +35,7 @@ export default function Home() {
             <div className="flex items-end justify-between gap-4">
               <SectionIntro kicker="Recent" title="News & highlights" />
               <Button asChild variant="ghost" size="sm">
-                <Link href="/community">View all &rarr;</Link>
+                <Link href="/news">View all &rarr;</Link>
               </Button>
             </div>
           </Reveal>

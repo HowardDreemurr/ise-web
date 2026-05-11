@@ -1,6 +1,6 @@
 # News
 
-Time-stamped announcements: paper acceptances, project launches, awards, media mentions, group milestones. Lives under the **Community** tab.
+Time-stamped announcements: paper acceptances, project launches, awards, media mentions, group milestones. This **is** the `/news` tab (renamed from "Community" once Events was retired).
 
 ## Schema
 
@@ -58,11 +58,9 @@ All forward refs are optional. A news item with no refs is fine (e.g. a Mileston
 
 ## Page layout
 
-`/community/news` (list): reverse-chronological, paginated or infinite scroll. Each card shows: date · tag badge · title · subtitle · thumbnail · related-refs row.
+`/news` (list): the shared `Chronology` layout — left rail buckets items by year (collapsible, scroll-spied); right column shows `NewsCard`s under year headings, newest year first. (No pagination needed — the year buckets do the chunking.)
 
-`/community/news/[slug]` (detail): hero image · date · tag · title · full markdown content · related items at the bottom.
-
-Detail page IS rendered (unlike People) because news has long-form `content`. Otherwise it'd just be a teaser.
+`/news/[slug]` (detail): hero image · date · tag · title · full markdown content · related items at the bottom. **Not yet implemented** — `NewsCard` links here, so the link 404s until the route exists. Detail page is warranted (unlike People) because news has long-form `content`.
 
 ## Migration from current state
 

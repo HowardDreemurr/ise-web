@@ -4,16 +4,18 @@
 
 ```
 /                       Home     (hero + recent news)
-/community              Community (news list — single leaf, no dropdown)
+/news                   News     (chronology archive — single leaf, no dropdown)
 /people                 People   ── /current · /alumni · /affiliated
 /research               Research ── /publications · /projects · /impact
 /resources              Resources ── /code · /data · /tools
 /join                   Contact  (CTA leaf)
 ```
 
-Events was retired from the site nav — its content lives on in `content/events/`
-and `struct/Events.md` as a candidate for a future "Service" section on
-Research → Impact. See [Events.md](./Events.md).
+`/news` (formerly `/community`), `/research/publications` ("All papers") and
+`/research/projects` share the `Chronology` layout — a year-bucketed left index
++ entries under year headings. Events was retired from the nav; its content lives
+on in `content/events/` + `struct/Events.md` as a candidate for a future
+"Service" section on Research → Impact.
 
 ## Entities
 
@@ -31,7 +33,7 @@ Research → Impact. See [Events.md](./Events.md).
 | [Projects.md](./Projects.md) | Funded grants |
 | [ResearchAreas.md](./ResearchAreas.md) | Research themes |
 | [Impact.md](./Impact.md) | Industry collabs + Awards |
-| [News.md](./News.md) | Announcements (the whole `/community` tab) |
+| [News.md](./News.md) | Announcements (the whole `/news` tab) |
 | [Events.md](./Events.md) | Talks · Workshops · Symposia · Service — **retired from nav**, content preserved |
 
 > Master files define the **shared schema**. Sub-tab files define **view-specific rules** (which types appear, ordering, required fields per type, card layout) without redefining the schema.
