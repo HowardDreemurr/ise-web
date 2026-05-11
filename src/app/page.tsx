@@ -6,14 +6,20 @@ import {
   EmptyState,
   NewsMosaic,
   PageHero,
+  PublicationCard,
   Reveal,
   Section,
   SectionIntro,
 } from "@/components"
-import { getNews } from "@/lib/content"
+import { getNews, getPeople, getPublications } from "@/lib/content"
 
 export default function Home() {
   const news = getNews().slice(0, 4)
+  const peopleById = new Map(getPeople().map((p) => [p.id, p.name]))
+  // Pinned via `featured: true` on a publication in Keystatic; newest first.
+  const featuredWork = getPublications()
+    .filter((p) => p.featured)
+    .slice(0, 6)
 
   return (
     <div className="bg-background">
@@ -51,6 +57,29 @@ export default function Home() {
           )}
         </Container>
       </Section>
+
+      {/* Featured work — pinned publications */}
+      {featuredWork.length > 0 && (
+        <Section className="py-12 md:py-16">
+          <Container className="space-y-8">
+            <Reveal>
+              <div className="flex items-end justify-between gap-4">
+                <SectionIntro kicker="Highlights" title="Featured work" />
+                <Button asChild variant="ghost" size="sm">
+                  <Link href="/research/publications">All publications &rarr;</Link>
+                </Button>
+              </div>
+            </Reveal>
+            <div className="grid auto-rows-fr gap-4 md:grid-cols-2">
+              {featuredWork.map((p, idx) => (
+                <Reveal key={p.id} delayMs={Math.min(idx, 6) * 40} className="h-full">
+                  <PublicationCard pub={p} peopleById={peopleById} />
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
     </div>
   )
 }

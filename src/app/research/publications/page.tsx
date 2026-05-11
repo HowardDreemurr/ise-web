@@ -1,78 +1,20 @@
 import type { Metadata } from "next"
-import { ExternalLink } from "lucide-react"
 
 import {
-  Badge,
-  Card,
-  CardContent,
   Chronology,
   Container,
   EmptyState,
+  PublicationCard,
   Reveal,
   Section,
   SubPageHero,
   type ChronologyEntry,
 } from "@/components"
-import { getPeople, getPublications, type AuthorRef, type Publication } from "@/lib/content"
+import { getPeople, getPublications } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Publications",
   description: "Journal, conference, workshop and book-chapter outputs from the ISE Group.",
-}
-
-function renderAuthors(authors: AuthorRef[], peopleById: Map<string, string>) {
-  return authors
-    .map((a) =>
-      a.type === "member"
-        ? peopleById.get(a.id) ?? a.id
-        : a.name,
-    )
-    .join(", ")
-}
-
-function PublicationCard({
-  pub,
-  peopleById,
-}: {
-  pub: Publication
-  peopleById: Map<string, string>
-}) {
-  const externalLink = pub.doi ? `https://doi.org/${pub.doi}` : pub.link
-  return (
-    <Card className="ise-panel">
-      <CardContent className="space-y-2 p-5">
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <Badge variant="secondary" className="font-mono">
-            {pub.year}
-          </Badge>
-          <Badge variant="outline" className="capitalize">
-            {pub.type.replace("-", " ")}
-          </Badge>
-          {pub.featured && (
-            <Badge className="bg-notable text-notable-foreground">Featured</Badge>
-          )}
-        </div>
-        <h3 className="font-serif text-lg font-semibold leading-snug text-foreground">
-          {pub.title}
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          {renderAuthors(pub.authors, peopleById)}
-        </p>
-        <p className="text-sm italic text-muted-foreground">{pub.venue}</p>
-        {externalLink && (
-          <a
-            href={externalLink}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-          >
-            <ExternalLink className="h-3 w-3" />
-            {pub.doi ? `doi.org/${pub.doi}` : "Open paper"}
-          </a>
-        )}
-      </CardContent>
-    </Card>
-  )
 }
 
 export default function PublicationsPage() {
@@ -109,9 +51,9 @@ export default function PublicationsPage() {
           {featured.length > 0 && (
             <Section kicker="Highlights" title="Featured publications" className="py-12">
               <Container>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid auto-rows-fr gap-4 md:grid-cols-2">
                   {featured.map((p, idx) => (
-                    <Reveal key={p.id} delayMs={idx * 40}>
+                    <Reveal key={p.id} delayMs={idx * 40} className="h-full">
                       <PublicationCard pub={p} peopleById={peopleById} />
                     </Reveal>
                   ))}
