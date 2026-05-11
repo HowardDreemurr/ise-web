@@ -3,6 +3,8 @@ title: "VisualWind — Wind-scale video dataset"
 type: dataset
 link: "https://sme.uds.exeter.ac.uk/folders/48caf5102d6196b9645fab1f46e494ec"
 license: "Research use"
+relatedPubs:
+  - paper-2022-visualwind
 researchAreas:
   - area-processing-analysis
 tags:
