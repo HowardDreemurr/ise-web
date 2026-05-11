@@ -4,7 +4,7 @@ import {
   Chronology,
   Container,
   EmptyState,
-  NewsCard,
+  NewsListCard,
   Section,
   SubPageHero,
   type ChronologyEntry,
@@ -27,7 +27,7 @@ export default function NewsPage() {
     id: item.id,
     year: yearOf(item.date),
     label: item.title,
-    node: <NewsCard item={item} size="md" />,
+    node: <NewsListCard item={item} />,
   }))
 
   return (
