@@ -22,7 +22,6 @@ export default function CodeResourcesPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Resources / Code"
         title="Code repositories"
         description="Reference implementations, training pipelines, and frameworks released by the group."
       />

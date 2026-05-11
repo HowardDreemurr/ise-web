@@ -22,7 +22,6 @@ export default function DataResourcesPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Resources / Data"
         title="Datasets & benchmarks"
         description="Reference datasets and benchmarks released or maintained by the group."
       />

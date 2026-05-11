@@ -131,7 +131,6 @@ export default function ProjectsPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Research / Projects"
         title="Funded projects"
         description={`${projects.length} grants — a year-by-year archive of active, completed, and in-preparation work.`}
       />

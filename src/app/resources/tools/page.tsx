@@ -22,7 +22,6 @@ export default function ToolsResourcesPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Resources / Tools"
         title="Tools, demos, models"
         description="Online demos, plugins, and pre-trained models — meant to be used, not just read."
       />

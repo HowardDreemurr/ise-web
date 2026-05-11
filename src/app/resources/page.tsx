@@ -47,7 +47,6 @@ export default function ResourcesPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Resources"
         title="Code, data, tools"
         description={`${all.length} open resources released by the group — repositories, benchmark datasets, and demos.`}
       />

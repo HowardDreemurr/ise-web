@@ -30,7 +30,6 @@ export default function ImpactPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Research / Impact"
         title="From research to real-world outcomes"
         description="Industry collaborations and group recognitions — translating intelligent sensing into deployed systems and policy outcomes."
       />

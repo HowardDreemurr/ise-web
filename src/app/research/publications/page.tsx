@@ -34,7 +34,6 @@ export default function PublicationsPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Research / Publications"
         title="Publications"
         description={`${pubs.length} papers across journals, conferences, workshops, and book chapters. Featured highlights first, then a year-by-year archive.`}
       />

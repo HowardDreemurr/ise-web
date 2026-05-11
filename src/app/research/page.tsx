@@ -50,7 +50,6 @@ export default function ResearchPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Research"
         title="Sensing, processing, and acting on environmental data."
         description={`From sensing and observation to processing and analysis, we develop better-performing, timelier, higher-resolution solutions for environmental intelligence. ${pubCount} publications and ${projCount} funded projects across three themes.`}
       />

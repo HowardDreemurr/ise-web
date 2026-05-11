@@ -33,7 +33,6 @@ export default function NewsPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="News"
         title="News & announcements"
         description="Recent updates from the group — paper acceptances, project launches, awards, talks and milestones."
       />

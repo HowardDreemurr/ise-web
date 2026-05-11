@@ -52,7 +52,6 @@ export default function PeoplePage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="People"
         title="The ISE team"
         description="PI, postdocs, PhD students, and affiliated collaborators working on intelligent sensing for environmental observation."
       />

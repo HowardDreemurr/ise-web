@@ -33,7 +33,6 @@ export default function AlumniPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="People / Alumni"
         title="Alumni"
         description="Former PhD candidates, MPhil students, and postdocs of the group, with their current positions."
       />

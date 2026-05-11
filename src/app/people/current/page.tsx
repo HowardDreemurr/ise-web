@@ -65,7 +65,6 @@ export default function CurrentMembersPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="People / Current"
         title="Current members"
         description="The PI and the in-residence researchers driving the group's work."
       />

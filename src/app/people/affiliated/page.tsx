@@ -21,7 +21,6 @@ export default function AffiliatedPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="People / Affiliated"
         title="Affiliated faculty & collaborators"
         description="External researchers connected to the group through co-authored papers, joint projects, or formal affiliation."
       />

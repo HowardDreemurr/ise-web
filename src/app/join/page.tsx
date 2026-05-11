@@ -42,7 +42,6 @@ export default function JoinPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        eyebrow="Join"
         title="Work with the ISE Group"
         description="We welcome PhD candidates, postdocs, and industry partners interested in intelligent sensing for environmental observation."
       />
