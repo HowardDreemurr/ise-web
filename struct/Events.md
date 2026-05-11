@@ -1,6 +1,8 @@
 # Events
 
-Academic activities organised, chaired, or hosted by group members. Lives under the **Community** tab. Confirmed in design phase that PI runs these regularly, so the collection is real (not a placeholder).
+> **Status: retired from the site nav (2026-05).** The `/community/events` page and the Community→Events dropdown entry were removed — in practice the collection was almost entirely the PI's professional service (editorial boards, conference chair roles) and invited keynotes, which read as a CV, not a group activity. The content (`content/events/*.md`) and the Keystatic `events` collection are kept; `getEvents()` still works but has no callers. Likely future home: a "Service & editorial roles" section on **Research → Impact** (same genre as Awards), with keynotes optionally surfaced as News (`tag: Talk`). This spec is preserved for that migration.
+
+Academic activities organised, chaired, or hosted by group members. (Was under the **Community** tab.)
 
 ## Schema
 

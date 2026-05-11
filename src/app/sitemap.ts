@@ -7,8 +7,6 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howarddreemurr.gith
 const routes = [
   "",
   "/community",
-  "/community/news",
-  "/community/events",
   "/research",
   "/research/publications",
   "/research/projects",

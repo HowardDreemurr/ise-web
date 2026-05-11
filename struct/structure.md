@@ -3,18 +3,17 @@
 ## Site Map
 
 ```
-/                       About    (Vision · Mission · SDGs)
-/community
-  /news                 Community
-  /events
-/people                 People
-/research
-  /publications         Research
-  /projects
-  /impact
-/resources              Resources
-/join                   Join Us
+/                       Home     (hero + recent news)
+/community              Community (news list — single leaf, no dropdown)
+/people                 People   ── /current · /alumni · /affiliated
+/research               Research ── /publications · /projects · /impact
+/resources              Resources ── /code · /data · /tools
+/join                   Contact  (CTA leaf)
 ```
+
+Events was retired from the site nav — its content lives on in `content/events/`
+and `struct/Events.md` as a candidate for a future "Service" section on
+Research → Impact. See [Events.md](./Events.md).
 
 ## Entities
 
@@ -32,8 +31,8 @@
 | [Projects.md](./Projects.md) | Funded grants |
 | [ResearchAreas.md](./ResearchAreas.md) | Research themes |
 | [Impact.md](./Impact.md) | Industry collabs + Awards |
-| [News.md](./News.md) | Announcements |
-| [Events.md](./Events.md) | Talks · Workshops · Symposia |
+| [News.md](./News.md) | Announcements (the whole `/community` tab) |
+| [Events.md](./Events.md) | Talks · Workshops · Symposia · Service — **retired from nav**, content preserved |
 
 > Master files define the **shared schema**. Sub-tab files define **view-specific rules** (which types appear, ordering, required fields per type, card layout) without redefining the schema.
 

@@ -30,7 +30,7 @@ Brand reference (colours, type, components, preview HTML) ships separately as a 
 ## Layout invariants
 
 - 6 top-level tabs: Home · Community · Research · People · Resources · Contact.
-- Community / Research / People / Resources have dropdowns. Contact is a primary-blue CTA leaf at the right end of nav.
+- Research / People / Resources have dropdowns. **Community is a plain leaf** → `/community` (a news list — Events was retired; see `struct/Events.md`). Contact is a primary-blue CTA leaf at the right end of nav.
 - **Header is right-aligned** (no centred nav, no separate Join Us CTA — Contact is part of the nav). Hamburger collapse threshold is `lg:` (1024px).
 - **Mobile drawer is an accordion** — only one parent expands at a time, animated via `max-height` transition. Auto-expands the parent containing the current route on open.
 - **Sub-page hero** = navy→cerulean diagonal gradient banner with subtle ring decoration (`SubPageHero.tsx`) — no photography, ~120-140px tall. Used on every page except `/`. It renders a `<Breadcrumbs>` at the top — auto-derived from `usePathname()` via `SEGMENT_LABELS` in `Breadcrumbs.tsx`, no per-page wiring. A dynamic detail route passes `crumbLabel` to `SubPageHero` to override the trailing slug with the entity title.
