@@ -59,23 +59,31 @@ export function ResourceCard({ resource, className }: ResourceCardProps) {
 
         {/* Body */}
         <div className="flex flex-col gap-3 p-6">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline" className="font-mono text-[11px] uppercase tracking-[0.08em]">
-              {TYPE_LABEL[resource.type]}
-            </Badge>
-            {resource.version && (
-              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-                {resource.version}
-              </span>
-            )}
-            {resource.license && (
-              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-                · {resource.license}
-              </span>
-            )}
-            {resource.size && (
-              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-                · {resource.size}
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="outline" className="font-mono text-[11px] uppercase tracking-[0.08em]">
+                {TYPE_LABEL[resource.type]}
+              </Badge>
+              {resource.version && (
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  {resource.version}
+                </span>
+              )}
+              {resource.license && (
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  · {resource.license}
+                </span>
+              )}
+              {resource.size && (
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  · {resource.size}
+                </span>
+              )}
+            </div>
+            {resource.link && (
+              <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-primary">
+                Open
+                <ExternalLink className="h-3 w-3" />
               </span>
             )}
           </div>
@@ -98,13 +106,6 @@ export function ResourceCard({ resource, className }: ResourceCardProps) {
                 </Badge>
               ))}
             </div>
-          )}
-
-          {resource.link && (
-            <p className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-primary">
-              <ExternalLink className="h-3.5 w-3.5" />
-              Open
-            </p>
           )}
         </div>
       </div>
