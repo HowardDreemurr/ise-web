@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./card"
+import Image from "next/image"
 import Link from "next/link"
 import type { HTMLAttributes } from "react"
 
@@ -81,10 +82,12 @@ export function TimelinePanel({ items, className, ...props }: TimelinePanelProps
         <Card className="ise-panel overflow-hidden h-full flex flex-col">
           {activeItem?.imageUrl && (
             <div className="relative h-48 md:h-56 shrink-0">
-              <img
+              <Image
                 src={activeItem.imageUrl}
                 alt={activeItem.title}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
               />
             </div>
           )}

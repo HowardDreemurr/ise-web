@@ -42,7 +42,7 @@ export default function AccessibilityPage() {
             public-sector sites and the one the University of Exeter follows.
           </p>
 
-          <h2 className={H2}>What we've done</h2>
+          <h2 className={H2}>What we&apos;ve done</h2>
           <ul className={UL}>
             <li>
               <strong>Semantic markup</strong> — headings, lists, landmarks
@@ -82,7 +82,7 @@ export default function AccessibilityPage() {
           <h2 className={H2}>Known limitations</h2>
           <p className={P}>
             Some content predates this site or comes from external sources, and
-            isn't fully accessible:
+            isn&apos;t fully accessible:
           </p>
           <ul className={UL}>
             <li>
@@ -92,21 +92,21 @@ export default function AccessibilityPage() {
             </li>
             <li>
               <strong>External forms</strong> — recruitment and member-info
-              forms hosted on Google Forms follow Google's accessibility
+              forms hosted on Google Forms follow Google&apos;s accessibility
               support, not ours.
             </li>
             <li>
               <strong>Embedded figures</strong> in news entries or resources
-              may not carry detailed alt text yet — we're filling these in as
-              we go.
+              may not carry detailed alt text yet — we&apos;re filling these
+              in as we go.
             </li>
           </ul>
 
           <h2 className={H2}>Reporting a problem</h2>
           <p className={P}>
-            If something on this site is hard to use — text that doesn't
-            reflow, a control that won't take focus, a contrast issue — please
-            tell us and we'll fix it.
+            If something on this site is hard to use — text that doesn&apos;t
+            reflow, a control that won&apos;t take focus, a contrast issue —
+            please tell us and we&apos;ll fix it.
           </p>
           <ul className={UL}>
             <li>

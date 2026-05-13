@@ -75,6 +75,10 @@ export function useInView<T extends Element>(options?: IntersectionObserverInit)
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("pageshow", onPageShow)
     }
+    // `options` is intentionally not in deps — call sites always pass a
+    // literal (or undefined), so rebuilding the observer on every render
+    // would flood the page with new IO instances.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { ref, inView } as const

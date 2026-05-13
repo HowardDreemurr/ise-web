@@ -18,7 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 import type { NewsItem } from "@/lib/content"
 
 type NewsCardProps = {
@@ -75,7 +75,7 @@ function buildBackground(imageUrl?: string) {
   // Vertical scrim from transparent (top) to dark navy (bottom) so meta + title read on any photo.
   return [
     "linear-gradient(180deg, rgba(2,3,12,0.10) 0%, rgba(2,3,12,0.55) 60%, rgba(2,3,12,0.85) 100%)",
-    `url(${imageUrl})`,
+    `url(${withBasePath(imageUrl)})`,
   ].join(", ")
 }
 

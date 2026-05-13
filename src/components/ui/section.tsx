@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 import { Container } from "./container"
 import { Reveal } from "./reveal"
 import type { ReactNode, HTMLAttributes } from "react"
@@ -53,7 +53,7 @@ export function Section({
       className={cn("py-12 bg-cover bg-center", className)}
       style={{
         backgroundImage: imageUrl
-          ? `linear-gradient(180deg, rgba(10,18,14,.78), rgba(10,18,14,.38)), url(${imageUrl})`
+          ? `linear-gradient(180deg, rgba(10,18,14,.78), rgba(10,18,14,.38)), url(${withBasePath(imageUrl)})`
           : undefined,
         backgroundColor: imageUrl ? undefined : bgColor,
         ...style,

@@ -48,14 +48,14 @@ export default function PrivacyPage() {
           <ul className={UL}>
             <li>
               <strong>Email</strong> — when you email a group member, your
-              message is handled under the University of Exeter's mail
+              message is handled under the University of Exeter&apos;s mail
               retention and privacy policy, not ours.
             </li>
             <li>
               <strong>Forms</strong> — any external form linked from this site
               (for example, recruitment or member-information forms hosted on
-              Google Forms) is operated under the provider's terms. The link
-              text tells you when you're leaving this site.
+              Google Forms) is operated under the provider&apos;s terms. The
+              link text tells you when you&apos;re leaving this site.
             </li>
           </ul>
 
@@ -72,14 +72,14 @@ export default function PrivacyPage() {
             </a>
             . As with any web host, GitHub records standard server logs
             (request IP, user agent, requested URL, timestamp) for operational
-            and abuse-prevention purposes. We don't query, export, or join
-            those logs — GitHub's privacy statement governs them.
+            and abuse-prevention purposes. We don&apos;t query, export, or
+            join those logs — GitHub&apos;s privacy statement governs them.
           </p>
 
           <h2 className={H2}>Images, papers, and embedded media</h2>
           <p className={P}>
             Photos of group members and projects are published with each
-            person's consent. Member photos and biographies can be removed at
+            person&apos;s consent. Member photos and biographies can be removed at
             any time on request — email the address below. Publication PDFs
             link out to publisher sites; we do not host paywalled copies.
           </p>
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
             Because the visitor-facing site collects nothing about you, there
             is no personal record here to access, correct, or erase. For
             anything that touches University systems (email, HR records,
-            student records, applications), the University's data-protection
+            student records, applications), the University&apos;s data-protection
             office is the relevant authority:{" "}
             <a href="mailto:dataprotection@exeter.ac.uk" className={A}>
               dataprotection@exeter.ac.uk
