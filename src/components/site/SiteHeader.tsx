@@ -6,7 +6,7 @@ import * as React from "react"
 import { ChevronDown } from "lucide-react"
 
 import { Wordmark } from "@/components/site/Wordmark"
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 
 type NavLeaf = { href: string; label: string; cta?: boolean }
 type NavItem =
@@ -370,7 +370,7 @@ export function SiteHeader({
             aria-label="ISE Lab — home"
           >
             <Image
-              src="/images/ise-logo.png"
+              src={withBasePath("/images/ise-logo.png")}
               alt=""
               width={72}
               height={72}

@@ -19,7 +19,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 import type { NewsItem } from "@/lib/content"
 
 /** Diagonal navy→cerulean wash used when a news item has no image. */
@@ -83,7 +83,7 @@ export function NewsListCard({
       <div className="relative aspect-[16/9] w-full bg-muted sm:aspect-auto sm:h-full sm:min-h-[148px]">
         {item.imageUrl ? (
           <Image
-            src={item.imageUrl}
+            src={withBasePath(item.imageUrl)}
             alt=""
             fill
             sizes="(min-width: 640px) 180px, 100vw"

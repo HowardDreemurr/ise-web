@@ -4,6 +4,7 @@ import { ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import type { Resource } from "@/lib/content"
+import { withBasePath } from "@/lib/utils"
 
 const TYPE_LABEL: Record<Resource["type"], string> = {
   code: "Code",
@@ -39,7 +40,7 @@ export function ResourceCard({ resource, className }: ResourceCardProps) {
         <div className="relative aspect-[4/3] w-full bg-muted sm:aspect-auto sm:h-full sm:min-h-[180px]">
           {resource.thumbnail ? (
             <Image
-              src={resource.thumbnail}
+              src={withBasePath(resource.thumbnail)}
               alt=""
               fill
               sizes="(min-width: 640px) 260px, 100vw"

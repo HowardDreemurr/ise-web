@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ExternalLink, Mail, MapPin } from "lucide-react"
 
 import { Container, Section, SubPageHero } from "@/components"
+import { withBasePath } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Get in Touch",
@@ -109,7 +110,7 @@ export default function ContactPage() {
               <div className="relative aspect-[4/3] w-full">
                 {buildingImage ? (
                   <Image
-                    src={buildingImage}
+                    src={withBasePath(buildingImage)}
                     alt="Kathleen Booth Building, University of Exeter"
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"

@@ -18,7 +18,7 @@ import {
   type ReactNode,
 } from "react"
 
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 
 /*
  * Scroll-driven story for /research.
@@ -672,7 +672,7 @@ function MobileGrid({
 // Asset paths
 // ──────────────────────────────────────────────────────────────────────────
 
-const IMG = (n: string) => `/research/slides/${n}`
+const IMG = (n: string) => withBasePath(`/research/slides/${n}`)
 
 const SCENE_COUNT = 9
 

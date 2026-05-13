@@ -34,6 +34,10 @@ const iseWordmarkTag = Space_Grotesk({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://howarddreemurr.github.io/ise-web";
+// Next's metadata API does NOT auto-prepend basePath to icon / manifest /
+// openGraph URLs (those are static strings, not router-aware). Read the
+// basePath at module-eval time and prefix every static asset path manually.
+const bp = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -54,7 +58,7 @@ export const metadata: Metadata = {
       "Machine learning and intelligent sensing for environmental observation, disaster management, and digital economy.",
     images: [
       {
-        url: "/images/hero-vision.png",
+        url: `${bp}/images/hero-vision.png`,
         width: 1200,
         height: 630,
         alt: "ISE Group hero image",
@@ -65,16 +69,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ISE Group",
     description: "Machine learning and intelligent sensing for environmental observation.",
-    images: ["/images/hero-vision.png"],
+    images: [`${bp}/images/hero-vision.png`],
   },
   icons: {
     icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: `${bp}/favicon-32x32.png`, sizes: "32x32", type: "image/png" },
+      { url: `${bp}/favicon-16x16.png`, sizes: "16x16", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: `${bp}/apple-touch-icon.png`,
   },
-  manifest: "/site.webmanifest",
+  manifest: `${bp}/site.webmanifest`,
 };
 
 export default function RootLayout({

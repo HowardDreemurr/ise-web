@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { Reveal } from "@/components/ui/reveal"
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 
 type CtaLink = {
   label: string
@@ -63,7 +63,7 @@ export function PageHero({
       {imageSrc && (
         <>
           <Image
-            src={imageSrc}
+            src={withBasePath(imageSrc)}
             alt={imageAlt}
             fill
             priority

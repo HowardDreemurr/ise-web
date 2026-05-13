@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { cn, withBasePath } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Button } from "./button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./card"
@@ -83,7 +83,7 @@ export function TimelinePanel({ items, className, ...props }: TimelinePanelProps
           {activeItem?.imageUrl && (
             <div className="relative h-48 md:h-56 shrink-0">
               <Image
-                src={activeItem.imageUrl}
+                src={withBasePath(activeItem.imageUrl)}
                 alt={activeItem.title}
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
