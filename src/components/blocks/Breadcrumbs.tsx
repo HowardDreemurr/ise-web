@@ -23,6 +23,12 @@ const SEGMENT_LABELS: Record<string, string> = {
   data: "Data",
   tools: "Tools",
   join: "Contact",
+  phd: "PhD Opportunities",
+  postdoc: "Postdoc & Research Staff",
+  industry: "Industry Collaboration",
+  contact: "Get in Touch",
+  privacy: "Privacy",
+  accessibility: "Accessibility",
 }
 
 function labelFor(segment: string) {

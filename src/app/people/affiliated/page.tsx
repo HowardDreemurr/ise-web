@@ -27,10 +27,12 @@ export default function AffiliatedPage() {
 
       {all.length === 0 ? (
         <Section className="py-12">
-          <EmptyState
-            title="No affiliated members published yet."
-            description="Add people with type 'Affiliated' in Keystatic to surface them here."
-          />
+          <Container>
+            <EmptyState
+              title="No affiliated members published yet."
+              description="Add people with type 'Affiliated' in Keystatic to surface them here."
+            />
+          </Container>
         </Section>
       ) : (
         <Section className="py-12 md:py-16">

@@ -18,42 +18,58 @@ type NavItem =
       cta?: boolean
     }
 
-const nav: NavItem[] = [
-  { href: "/", label: "Home" },
-  // News (formerly "Community" — Events was retired) — a plain leaf; restore a
-  // dropdown here if Seminars/Vacancies/etc. land.
-  { href: "/news", label: "News" },
-  {
-    label: "Research",
-    href: "/research",
-    children: [
-      { href: "/research/publications", label: "Publications" },
-      { href: "/research/projects", label: "Projects" },
-      { href: "/research/impact", label: "Impact" },
-    ],
-  },
-  {
-    label: "People",
-    href: "/people",
-    children: [
-      { href: "/people/current", label: "Current" },
-      { href: "/people/alumni", label: "Alumni" },
-      { href: "/people/affiliated", label: "Affiliated" },
-    ],
-  },
-  {
-    label: "Resources",
-    href: "/resources",
-    children: [
-      { href: "/resources/code", label: "Code" },
-      { href: "/resources/data", label: "Data" },
-      { href: "/resources/tools", label: "Tools" },
-    ],
-  },
-  // Contact tab — last item, rendered as a primary-blue pill (replaces the
-  // separate "Join Us" CTA). The page itself still lives at /join.
-  { href: "/join", label: "Contact", cta: true },
-]
+function buildNav({ showAffiliated }: { showAffiliated: boolean }): NavItem[] {
+  const peopleChildren: NavLeaf[] = [
+    { href: "/people/current", label: "Current" },
+    { href: "/people/alumni", label: "Alumni" },
+  ]
+  if (showAffiliated) {
+    peopleChildren.push({ href: "/people/affiliated", label: "Affiliated" })
+  }
+
+  return [
+    { href: "/", label: "Home" },
+    // News (formerly "Community" — Events was retired) — a plain leaf; restore
+    // a dropdown here if Seminars/Vacancies/etc. land.
+    { href: "/news", label: "News" },
+    {
+      label: "Research",
+      href: "/research",
+      children: [
+        { href: "/research/publications", label: "Publications" },
+        { href: "/research/projects", label: "Projects" },
+        { href: "/research/impact", label: "Impact" },
+      ],
+    },
+    {
+      label: "People",
+      href: "/people",
+      children: peopleChildren,
+    },
+    {
+      label: "Resources",
+      href: "/resources",
+      children: [
+        { href: "/resources/code", label: "Code" },
+        { href: "/resources/data", label: "Data" },
+        { href: "/resources/tools", label: "Tools" },
+      ],
+    },
+    // Contact tab — last item, rendered as a primary-blue pill (replaces the
+    // separate "Join Us" CTA). The pill is also a dropdown trigger.
+    {
+      label: "Contact",
+      href: "/join",
+      cta: true,
+      children: [
+        { href: "/join/phd", label: "PhD Opportunities" },
+        { href: "/join/postdoc", label: "Postdoc & Research Staff" },
+        { href: "/join/industry", label: "Industry Collaboration" },
+        { href: "/join/contact", label: "Get in Touch" },
+      ],
+    },
+  ]
+}
 
 function HamburgerIcon({
   isOpen,
@@ -125,19 +141,27 @@ function DesktopItem({ item, pathname }: { item: NavItem; pathname: string }) {
     )
   }
 
+  // CTA-styled dropdown trigger (Contact pill) keeps the primary fill regardless
+  // of active state, so the trigger reads as a button rather than a tab.
+  const triggerClass = item.cta
+    ? "inline-flex h-9 items-center gap-1 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+    : cn(
+        "inline-flex items-center gap-1 px-4 py-2 rounded-full text-sm font-semibold transition-colors",
+        isActive
+          ? "bg-primary/10 text-primary"
+          : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+      )
+
   return (
     <div className="group relative">
-      <Link
-        href={item.href}
-        className={cn(
-          "inline-flex items-center gap-1 px-4 py-2 rounded-full text-sm font-semibold transition-colors",
-          isActive
-            ? "bg-primary/10 text-primary"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
-        )}
-      >
+      <Link href={item.href} className={triggerClass}>
         {item.label}
-        <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+        <ChevronDown
+          className={cn(
+            "h-3.5 w-3.5 transition-transform group-hover:rotate-180",
+            item.cta && "text-primary-foreground/80",
+          )}
+        />
       </Link>
       {/* Narrow hover-bridge — exactly the trigger's width × 8px tall.
           Lets the cursor cross from trigger to panel without losing :hover,
@@ -148,15 +172,24 @@ function DesktopItem({ item, pathname }: { item: NavItem; pathname: string }) {
       />
 
       {/* The dropdown panel — sits 8px below trigger, only visible on
-          group-hover/focus-within. Wider than the trigger but its hover-active
-          state only matters once it's actually visible. */}
+          group-hover/focus-within. CTA-styled trigger (Contact) sits at the
+          right edge of the nav, so the panel right-aligns for that case to
+          avoid overflowing past the viewport. */}
       <div
         className={cn(
-          "invisible absolute left-1/2 top-[calc(100%+0.5rem)] -translate-x-1/2 opacity-0 transition-opacity duration-150",
+          "invisible absolute top-[calc(100%+0.5rem)] opacity-0 transition-opacity duration-150",
           "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
+          item.cta
+            ? "right-0"
+            : "left-1/2 -translate-x-1/2",
         )}
       >
-        <div className="ise-panel w-52 overflow-hidden p-1 shadow-md">
+        <div
+          className={cn(
+            "ise-panel overflow-hidden p-1 shadow-md",
+            item.cta ? "w-64" : "w-52",
+          )}
+        >
           {item.children.map((child) => {
             const childActive = isHrefActive(pathname, child.href)
             return (
@@ -237,9 +270,11 @@ function MobileNavItem({
         aria-expanded={expanded}
         className={cn(
           "flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-base font-semibold transition-colors",
-          isActive
-            ? "bg-primary/10 text-primary"
-            : "text-foreground hover:bg-muted/50",
+          item.cta
+            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+            : isActive
+              ? "bg-primary/10 text-primary"
+              : "text-foreground hover:bg-muted/50",
         )}
       >
         <span>{item.label}</span>
@@ -247,6 +282,7 @@ function MobileNavItem({
           className={cn(
             "h-4 w-4 transition-transform duration-200",
             expanded && "rotate-180",
+            item.cta && "text-primary-foreground/80",
           )}
         />
       </button>
@@ -295,12 +331,17 @@ function MobileNavItem({
   )
 }
 
-export function SiteHeader() {
+export function SiteHeader({
+  showAffiliated = false,
+}: {
+  showAffiliated?: boolean
+}) {
   const [isOpen, setIsOpen] = React.useState(false)
   const pathname = usePathname()
   const [prevPathname, setPrevPathname] = React.useState(pathname)
   // Track which parent group is open in the mobile drawer; only one at a time.
   const [openGroup, setOpenGroup] = React.useState<string | null>(null)
+  const nav = React.useMemo(() => buildNav({ showAffiliated }), [showAffiliated])
 
   if (prevPathname !== pathname) {
     setPrevPathname(pathname)

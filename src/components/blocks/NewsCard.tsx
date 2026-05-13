@@ -1,4 +1,22 @@
-import Link from "next/link"
+import {
+  Award,
+  BadgeCheck,
+  Brain,
+  Building2,
+  Coins,
+  Cpu,
+  FileText,
+  Flame,
+  Globe,
+  GraduationCap,
+  Handshake,
+  Network,
+  Plane,
+  Satellite,
+  Sprout,
+  Trophy,
+  type LucideIcon,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import type { NewsItem } from "@/lib/content"
@@ -21,6 +39,32 @@ const TITLE_CLASS: Record<NonNullable<NewsCardProps["size"]>, string> = {
   sm: "text-base leading-[1.3]",
 }
 
+const ICON_SIZE: Record<NonNullable<NewsCardProps["size"]>, string> = {
+  lg: "h-44 w-44",
+  md: "h-28 w-28",
+  sm: "h-16 w-16",
+}
+
+/** Themed icon library — name → lucide component. Add new ones here. */
+const ICONS: Record<string, LucideIcon> = {
+  award: Award,
+  "badge-check": BadgeCheck,
+  brain: Brain,
+  building: Building2,
+  coins: Coins,
+  cpu: Cpu,
+  "file-text": FileText,
+  flame: Flame,
+  globe: Globe,
+  "graduation-cap": GraduationCap,
+  handshake: Handshake,
+  network: Network,
+  plane: Plane,
+  satellite: Satellite,
+  sprout: Sprout,
+  trophy: Trophy,
+}
+
 /** Hairy default — navy → cerulean → sky with a thin diagonal-stripe overlay.
  *  Used when a news item has no `imageUrl`, so the card is never flat. */
 const DEFAULT_BG =
@@ -37,18 +81,47 @@ function buildBackground(imageUrl?: string) {
 
 export function NewsCard({ item, size = "md", className }: NewsCardProps) {
   const bg = buildBackground(item.imageUrl)
-  const href = `/community/news/${item.id}`
+  // Link target — first external link if any. There's no per-news detail page,
+  // so an item without a `links` entry stays static (no hover lift, no 404).
+  const externalHref = item.links?.[0]?.href
+
+  // When there's no image, render the themed icon as a large faint mark in the
+  // upper area of the card. Keeps the card from looking flat without competing
+  // with the title (which sits at the bottom).
+  const IconComponent = !item.imageUrl && item.icon ? ICONS[item.icon] : null
 
   return (
     <article
       className={cn(
-        "group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-lg bg-cover bg-center text-white transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_rgba(15,23,42,0.45)]",
+        "group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-lg bg-cover bg-center text-white transition-[box-shadow] duration-300",
+        externalHref &&
+          "hover:shadow-[0_18px_40px_-16px_rgba(15,23,42,0.45)]",
         SIZE_CLASS[size],
         className,
       )}
       style={{ backgroundImage: bg }}
     >
-      <Link href={href} className="absolute inset-0 z-10" aria-label={item.title} />
+      {externalHref && (
+        <a
+          href={externalHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-10"
+          aria-label={item.title}
+        />
+      )}
+
+      {IconComponent && (
+        <IconComponent
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute right-5 top-5 z-[0] text-white/20",
+            ICON_SIZE[size],
+          )}
+          strokeWidth={1.25}
+        />
+      )}
+
       <div className="relative z-[1]">
         <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-white/85">
           {item.tag && (

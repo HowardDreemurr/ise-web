@@ -1,6 +1,5 @@
 import type { ReactNode } from "react"
 
-import { Container } from "@/components/ui/container"
 import { cn } from "@/lib/utils"
 
 type EmptyStateProps = {
@@ -11,8 +10,10 @@ type EmptyStateProps = {
 }
 
 /**
- * Compact placeholder shown on a list page when no entries exist yet.
- * Phase 5 will populate the data; this keeps layouts coherent in the meantime.
+ * Placeholder shown on a list when no entries exist yet. The card fills its
+ * parent container — callers must place it inside a `<Container>` (or any
+ * width-capped wrapper) so it sits at the same width as the surrounding
+ * content.
  */
 export function EmptyState({
   title,
@@ -21,21 +22,17 @@ export function EmptyState({
   className,
 }: EmptyStateProps) {
   return (
-    <Container>
-      <div
-        className={cn(
-          "ise-panel mx-auto flex max-w-xl flex-col items-center gap-3 py-12 text-center",
-          className,
-        )}
-      >
-        <p className="font-serif text-xl font-semibold">{title}</p>
-        {description && (
-          <p className="max-w-md text-sm text-muted-foreground">
-            {description}
-          </p>
-        )}
-        {action}
-      </div>
-    </Container>
+    <div
+      className={cn(
+        "ise-panel flex w-full flex-col items-center gap-3 px-6 py-12 text-center",
+        className,
+      )}
+    >
+      <p className="font-serif text-xl font-semibold">{title}</p>
+      {description && (
+        <p className="max-w-md text-sm text-muted-foreground">{description}</p>
+      )}
+      {action}
+    </div>
   )
 }

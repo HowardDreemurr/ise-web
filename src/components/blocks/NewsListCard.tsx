@@ -1,4 +1,23 @@
 import Image from "next/image"
+import {
+  Award,
+  BadgeCheck,
+  Brain,
+  Building2,
+  Coins,
+  Cpu,
+  FileText,
+  Flame,
+  Globe,
+  GraduationCap,
+  Handshake,
+  Network,
+  Plane,
+  Satellite,
+  Sprout,
+  Trophy,
+  type LucideIcon,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import type { NewsItem } from "@/lib/content"
@@ -6,6 +25,26 @@ import type { NewsItem } from "@/lib/content"
 /** Diagonal navy→cerulean wash used when a news item has no image. */
 const PLACEHOLDER_BG =
   "linear-gradient(135deg, rgba(30,58,138,0.92) 0%, rgba(3,105,161,0.88) 60%, rgba(56,189,248,0.85) 100%), repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px)"
+
+/** Same icon set as `NewsCard`, kept in sync. */
+const ICONS: Record<string, LucideIcon> = {
+  award: Award,
+  "badge-check": BadgeCheck,
+  brain: Brain,
+  building: Building2,
+  coins: Coins,
+  cpu: Cpu,
+  "file-text": FileText,
+  flame: Flame,
+  globe: Globe,
+  "graduation-cap": GraduationCap,
+  handshake: Handshake,
+  network: Network,
+  plane: Plane,
+  satellite: Satellite,
+  sprout: Sprout,
+  trophy: Trophy,
+}
 
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -19,9 +58,10 @@ function formatDate(s: string): string {
 }
 
 /**
- * News list item — thumbnail (or gradient placeholder) on the left, tag · date,
- * serif title and the abstract on the right, plus any external links. The flat
- * list counterpart to the poster-style `NewsCard` used on the home mosaic.
+ * News list item — thumbnail (or gradient + icon placeholder) on the left, tag
+ * · date, serif title and the abstract on the right, plus any external links.
+ * The flat list counterpart to the poster-style `NewsCard` used on the home
+ * mosaic.
  */
 export function NewsListCard({
   item,
@@ -30,6 +70,8 @@ export function NewsListCard({
   item: NewsItem
   className?: string
 }) {
+  const IconComponent = !item.imageUrl && item.icon ? ICONS[item.icon] : null
+
   return (
     <article
       className={cn(
@@ -37,7 +79,7 @@ export function NewsListCard({
         className,
       )}
     >
-      {/* Thumbnail */}
+      {/* Thumbnail or icon placeholder */}
       <div className="relative aspect-[16/9] w-full bg-muted sm:aspect-auto sm:h-full sm:min-h-[148px]">
         {item.imageUrl ? (
           <Image
@@ -48,7 +90,18 @@ export function NewsListCard({
             className="object-cover"
           />
         ) : (
-          <div className="h-full w-full" style={{ backgroundImage: PLACEHOLDER_BG }} />
+          <div
+            className="flex h-full w-full items-center justify-center"
+            style={{ backgroundImage: PLACEHOLDER_BG }}
+          >
+            {IconComponent && (
+              <IconComponent
+                aria-hidden
+                className="h-12 w-12 text-white/55"
+                strokeWidth={1.4}
+              />
+            )}
+          </div>
         )}
       </div>
 

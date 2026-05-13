@@ -39,10 +39,12 @@ export default function AlumniPage() {
 
       {all.length === 0 ? (
         <Section className="py-12">
-          <EmptyState
-            title="No alumni published yet."
-            description="Move members to type 'Alumni' in Keystatic when they leave."
-          />
+          <Container>
+            <EmptyState
+              title="No alumni published yet."
+              description="Move members to type 'Alumni' in Keystatic when they leave."
+            />
+          </Container>
         </Section>
       ) : (
         <Section className="py-12 md:py-16">

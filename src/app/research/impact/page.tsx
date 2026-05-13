@@ -59,22 +59,26 @@ export default function ImpactPage() {
                 <Reveal key={impact.id} delayMs={idx * 50}>
                   <Card className="ise-panel h-full">
                     <CardHeader>
-                      <div className="flex items-start justify-between gap-3">
-                        <CardTitle className="text-lg">{impact.title}</CardTitle>
-                        {impact.partner && (
-                          <Badge variant="outline" className="shrink-0">
-                            {impact.partner}
-                          </Badge>
-                        )}
-                      </div>
-                      {(impact.period || impact.amount) && (
-                        <div className="mt-1 flex flex-wrap gap-3 text-xs text-muted-foreground">
-                          {impact.period && <span>{impact.period}</span>}
+                      {(impact.partner || impact.period || impact.amount) && (
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                          {impact.partner && (
+                            <Badge variant="outline" className="shrink-0">
+                              {impact.partner}
+                            </Badge>
+                          )}
+                          {impact.period && (
+                            <span className="text-xs text-muted-foreground">
+                              {impact.period}
+                            </span>
+                          )}
                           {impact.amount && (
-                            <span className="font-semibold">{impact.amount}</span>
+                            <span className="text-xs font-semibold text-muted-foreground">
+                              {impact.amount}
+                            </span>
                           )}
                         </div>
                       )}
+                      <CardTitle className="text-lg">{impact.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       {impact.description && (

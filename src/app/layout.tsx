@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Inter, Source_Serif_4, Space_Grotesk } from "next/font/google";
 import { SiteChrome } from "@/components";
+import { getAffiliated } from "@/lib/content";
 import "./globals.css";
 
 const iseSans = Inter({
@@ -84,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`${iseSans.variable} ${iseSerif.variable} ${iseWordmark.variable} ${iseWordmarkTag.variable} antialiased`}>
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome showAffiliated={getAffiliated().length > 0}>{children}</SiteChrome>
       </body>
     </html>
   );

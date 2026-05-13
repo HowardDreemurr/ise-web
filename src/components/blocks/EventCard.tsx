@@ -45,7 +45,7 @@ export function EventCard({ event, className }: EventCardProps) {
     <Wrapper
       {...wrapperProps}
       className={cn(
-        "group grid h-full overflow-hidden rounded-lg border border-border bg-card transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_14px_32px_-14px_rgba(15,23,42,0.18)]",
+        "group grid h-full overflow-hidden rounded-lg border border-border bg-card transition-[box-shadow,border-color] duration-200 hover:border-primary/35 hover:shadow-[0_14px_32px_-14px_rgba(15,23,42,0.18)]",
         // Always horizontal: image-on-left, body-on-right.
         // Image column shrinks on mobile so the row stays a row (not a stack).
         "grid-cols-[110px_1fr] sm:grid-cols-[160px_1fr]",

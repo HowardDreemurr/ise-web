@@ -14,6 +14,12 @@ const routes = [
   "/people",
   "/resources",
   "/join",
+  "/join/phd",
+  "/join/postdoc",
+  "/join/industry",
+  "/join/contact",
+  "/privacy",
+  "/accessibility",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

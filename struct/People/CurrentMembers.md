@@ -17,39 +17,36 @@ Sub-tab of [People](../People.md). PI lives here with `type: Staff`. **Staff is 
 
 Empty optional fields don't render — except the bottom links bar, which always reserves space so the icon row stays anchored at the same baseline across cards.
 
+**`funding` is editable but never rendered on the card.** It stays in the schema for archival / CV purposes and to support future per-person export, but the card surface is photoless and density-first — funding info was removed so all members fit on one screen. `photo` is the same: still in the schema for downstream use, not rendered.
+
 ## Grouping & ordering
 
-Sections are configured by a `GROUPS` array in `src/app/people/current/page.tsx`:
+**No section headings.** The page renders a single flat grid — the type badge on each card carries the role, so per-section labels were redundant and wasted vertical space. Members sort by:
 
-```ts
-const GROUPS = [
-  { label: "Staff",                     types: ["Staff"]   },
-  { label: "Post-Doctoral Researchers", types: ["PostDoc"] },
-  { label: "PhD Candidates",            types: ["PhD"]     },
-  { label: "MPhil Students",            types: ["MPhil"]   },
-]
-```
+1. `type`, in the priority order defined by `TYPE_ORDER` in `src/app/people/current/page.tsx` (`Staff → PostDoc → PhD → MPhil`)
+2. `period` start year, descending
+3. `name`, alphabetical
 
-Each entry maps **one or more** PersonTypes to a single section heading. Edit the array to merge/split groups without touching component code — e.g. `{ label: "Researchers", types: ["Staff", "PostDoc"] }` would aggregate two types into one section. Within each section, members sort by `period` start-year descending, then alphabetical.
+To change the role order, edit the `TYPE_ORDER` array.
 
 ## Card layout
 
-Horizontal — 120-160px photo column on the left, body on the right (cybergis-style).
+Photoless, dense, single-column flow — designed so the whole group fits in one viewport. Grid is `sm:grid-cols-2 lg:grid-cols-3`.
 
 ```
-┌────────────────────────────────────────────────────┐
-│ [PHOTO]    Name                                    │
-│ [badge]    Role                                    │
-│            Affiliation                             │
-│            Period                                  │
-│            Research: tag · tag · tag               │
-│            ● Funding                               │
-│ ──────────────────────────────────────────────     │
-│ [✉] [🌐] [GS] [GH] [in]                            │
-└────────────────────────────────────────────────────┘
+┌────────────────────────┐
+│ [badge]                │
+│ Name                   │
+│ Role                   │
+│ Affiliation            │
+│ Period                 │
+│ Research: tag · tag    │
+│ ──────────────────     │
+│ [✉] [🌐] [GS] [GH] [in]│
+└────────────────────────┘
 ```
 
-The type/role **badge floats top-left over the photo** (on-dark pill: white/18 fill, white/30 border, blur). Same template for everyone — Staff isn't styled differently.
+The type/role **badge is an inline pill at the top** (subtle primary-tinted fill: `bg-primary/10`, `border-primary/25`, `text-primary`). Same template for everyone — Staff isn't styled differently.
 
 ## Badge label rules
 

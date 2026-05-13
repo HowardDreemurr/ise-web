@@ -27,20 +27,21 @@ Same-year ties: sort by name alphabetical.
 
 ## Card layout
 
-Same horizontal `PersonCard` template used on `/people/current` (160px photo column + body), with the alumni-specific `Now: <currentPosition>` line in the meta row.
+Same photoless compact `PersonCard` template used on `/people/current`, with the alumni-specific `Now: <currentPosition>` line in the meta row.
 
 ```
-┌────────────────────────────────────────────────────┐
-│ [PHOTO]    Name                                    │
-│ [badge]    Role (e.g. "Doctoral Researcher")       │
-│            Period (closed) · Now: …                │
-│            Research: tag · tag                     │
-│ ──────────────────────────────────────────────     │
-│ [scholar] [linkedin]                               │
-└────────────────────────────────────────────────────┘
+┌────────────────────────────┐
+│ [badge]                    │
+│ Name                       │
+│ Role                       │
+│ Period (closed) · Now: …   │
+│ Research: tag · tag        │
+│ ──────────────────────     │
+│ [scholar] [linkedin]       │
+└────────────────────────────┘
 ```
 
-Photo is optional — falls back to initials over a navy→cerulean gradient. Email hidden by default (no longer @exeter). Citation metrics are skipped on this tab; the page focuses on placement.
+`funding` is intentionally not rendered (kept in schema for archival). Citation metrics are skipped on this tab; the page focuses on placement.
 
 ## Badge label
 

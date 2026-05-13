@@ -2,6 +2,7 @@
 title: "Multi-agent multi-objective RL paper accepted at AAAI 2025"
 date: 2024-12-15
 tag: Paper
+icon: brain
 relatedPeople:
   - member-luo
 ---

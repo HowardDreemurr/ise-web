@@ -129,26 +129,32 @@ export function PageHero({
           {ctas && ctas.length > 0 && (
             <Reveal delayMs={180}>
               <div className="mt-8 flex flex-wrap gap-3">
-                {ctas.map((cta) => (
-                  <Button
-                    key={cta.href}
-                    asChild
-                    size="lg"
-                    variant={
-                      cta.variant === "secondary" && !isDark
-                        ? "outline"
-                        : "default"
-                    }
-                    className={cn(
-                      "rounded-full font-semibold",
-                      isDark &&
-                        cta.variant === "secondary" &&
-                        "bg-white/10 text-white hover:bg-white/15 border border-white/30",
-                    )}
-                  >
-                    <Link href={cta.href}>{cta.label}</Link>
-                  </Button>
-                ))}
+                {ctas.map((cta) => {
+                  const isPrimary = cta.variant !== "secondary"
+                  return (
+                    <Button
+                      key={cta.href}
+                      asChild
+                      size="lg"
+                      variant={
+                        cta.variant === "secondary" && !isDark
+                          ? "outline"
+                          : "default"
+                      }
+                      className={cn(
+                        "rounded-full font-semibold",
+                        isDark &&
+                          cta.variant === "secondary" &&
+                          "bg-white/10 text-white hover:bg-white/15 border border-white/30",
+                        // Breathing cerulean glow on the primary CTA — pulls the
+                        // eye to the lead action without animating layout.
+                        isPrimary && "ise-pulse-glow",
+                      )}
+                    >
+                      <Link href={cta.href}>{cta.label}</Link>
+                    </Button>
+                  )
+                })}
               </div>
             </Reveal>
           )}

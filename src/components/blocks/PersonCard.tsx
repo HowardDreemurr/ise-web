@@ -1,4 +1,3 @@
-import Image from "next/image"
 import {
   Github,
   Globe,
@@ -10,16 +9,6 @@ import {
 
 import { cn } from "@/lib/utils"
 import type { Person } from "@/lib/content"
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join("")
-    .toUpperCase()
-}
 
 type LinkSpec = { href: string; icon: LucideIcon; label: string }
 
@@ -120,12 +109,10 @@ type PersonCardProps = {
 }
 
 /**
- * Cybergis-style horizontal person card. 160px photo column on the left,
- * structured content on the right. Type badge floats top-left over the photo.
- *
- * Optional fields render only when present (no empty placeholders) — except
- * the bottom links bar, which always reserves space so cards in the same row
- * keep their links baseline aligned.
+ * Photoless compact card. Type badge sits inline at the top, then identity
+ * lines, then a links bar pinned to the bottom. `funding` is intentionally
+ * not rendered — the field is preserved in the schema (still editable in
+ * Keystatic) but kept off the card to fit all members on one screen.
  */
 export function PersonCard({
   person,
@@ -133,7 +120,6 @@ export function PersonCard({
   className,
 }: PersonCardProps) {
   const links = personLinks(person)
-  const initials = getInitials(person.name)
   const showMeta =
     !!person.period || (showCurrentPosition && !!person.currentPosition)
   // Badge label rules:
@@ -158,114 +144,105 @@ export function PersonCard({
         // scroll-mt clears the sticky header + (on /people/current) the
         // section nav, so deep links from author bylines land cleanly;
         // data-anchor-flash makes the card pulse a ring when it's the :target.
-        "ise-panel grid h-full scroll-mt-[132px] overflow-hidden",
+        "ise-panel flex h-full scroll-mt-[132px] flex-col gap-[5px] overflow-hidden px-4 py-3.5",
         className,
       )}
-      style={{ gridTemplateColumns: "minmax(120px, 160px) 1fr" }}
     >
-      {/* Photo column — type badge floats top-left over the image */}
-      <div
-        className="relative overflow-hidden"
-        style={{ backgroundColor: "#02030C" }}
-      >
-        {person.photo ? (
-          <Image
-            src={person.photo}
-            alt={person.name}
-            fill
-            sizes="160px"
-            className="object-cover"
-          />
-        ) : (
-          <div
-            aria-hidden
-            className="absolute inset-0 flex items-center justify-center font-serif text-4xl font-bold tracking-tight text-white/90 sm:text-[44px]"
-            style={{
-              background: "linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%)",
-            }}
-          >
-            {initials}
-          </div>
-        )}
-        {/* Type badge — top-left, on-dark style so it reads over any photo */}
-        <span
-          className="absolute left-2 top-2 inline-flex items-center rounded-full px-2 py-[3px] text-[11px] font-semibold text-white"
-          style={{
-            backgroundColor: "rgba(255,255,255,0.18)",
-            border: "1px solid rgba(255,255,255,0.30)",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          {badgeLabel}
-        </span>
-      </div>
+      {/* Type badge — inline pill at the top of the card */}
+      <span className="inline-flex w-fit items-center rounded-full border border-primary/25 bg-primary/10 px-2 py-[2px] text-[11px] font-semibold text-primary">
+        {badgeLabel}
+      </span>
 
-      {/* Body column — populated rows only; links bar always reserved */}
-      <div className="flex min-w-0 flex-col gap-[5px] px-5 py-3 sm:px-[22px]">
-        <h3 className="m-0 font-serif text-xl font-bold leading-[1.15] tracking-[-0.015em]">
-          {person.name}
-        </h3>
+      <h3 className="m-0 mt-0.5 font-serif text-lg font-bold leading-[1.15] tracking-[-0.015em]">
+        {person.name}
+      </h3>
 
-        {person.role && (
-          <p className="m-0 text-[13px] font-medium leading-tight text-foreground">
-            {person.role}
-          </p>
-        )}
+      {person.role && (
+        <p className="m-0 text-[12.5px] font-medium leading-tight text-foreground">
+          {person.role}
+        </p>
+      )}
 
-        {person.affiliation && (
-          <p className="m-0 text-xs leading-tight text-muted-foreground">
-            {person.affiliation}
-          </p>
-        )}
+      {person.affiliation && (
+        <p className="m-0 text-xs leading-tight text-muted-foreground">
+          {person.affiliation}
+        </p>
+      )}
 
-        {showMeta && (
-          <div className="flex flex-wrap items-center gap-x-3 text-[11px] leading-tight text-muted-foreground">
-            {person.period && <span>{person.period}</span>}
-            {showCurrentPosition && person.currentPosition && (
+      {showMeta && (
+        <div className="flex flex-wrap items-center gap-x-3 text-[11px] leading-tight text-muted-foreground">
+          {person.period && <span>{person.period}</span>}
+          {showCurrentPosition && person.currentPosition && (
+            <>
+              {person.period && <span aria-hidden>·</span>}
+              <span>
+                <span className="font-semibold text-foreground">Now:</span>{" "}
+                {person.currentPosition}
+              </span>
+            </>
+          )}
+        </div>
+      )}
+
+      {person.interests && person.interests.length > 0 && (
+        <p className="m-0 line-clamp-2 text-xs leading-[1.4] text-muted-foreground">
+          <span className="font-semibold text-foreground">Research:</span>{" "}
+          {person.interests.join(" · ")}
+        </p>
+      )}
+
+      {person.metrics &&
+        (person.metrics.citations ||
+          person.metrics.hIndex ||
+          person.metrics.i10Index) && (
+          <div className="m-0 flex flex-wrap items-baseline gap-x-2 text-[11px] leading-tight text-muted-foreground">
+            {person.metrics.citations !== undefined && (
+              <span>
+                <span className="font-semibold text-foreground">
+                  {person.metrics.citations.toLocaleString()}
+                </span>{" "}
+                citations
+              </span>
+            )}
+            {person.metrics.hIndex !== undefined && (
               <>
-                {person.period && <span aria-hidden>·</span>}
+                <span aria-hidden>·</span>
                 <span>
-                  <span className="font-semibold text-foreground">Now:</span>{" "}
-                  {person.currentPosition}
+                  h-index{" "}
+                  <span className="font-semibold text-foreground">
+                    {person.metrics.hIndex}
+                  </span>
+                </span>
+              </>
+            )}
+            {person.metrics.i10Index !== undefined && (
+              <>
+                <span aria-hidden>·</span>
+                <span>
+                  i10{" "}
+                  <span className="font-semibold text-foreground">
+                    {person.metrics.i10Index}
+                  </span>
                 </span>
               </>
             )}
           </div>
         )}
 
-        {person.interests && person.interests.length > 0 && (
-          <p className="m-0 line-clamp-2 text-xs leading-[1.4] text-muted-foreground">
-            <span className="font-semibold text-foreground">Research:</span>{" "}
-            {person.interests.join(" · ")}
-          </p>
-        )}
-
-        {person.funding && (
-          <div className="inline-flex items-center gap-1.5 text-[11px] leading-tight text-muted-foreground">
-            <span
-              aria-hidden
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: "var(--notable)" }}
-            />
-            {person.funding}
-          </div>
-        )}
-
-        {/* Links — ALWAYS rendered (the only reserved row), pinned to bottom */}
-        <div className="mt-auto flex min-h-[30px] gap-1.5 border-t border-border pt-2">
-          {links.map(({ href, icon: Icon, label }) => (
-            <a
-              key={href}
-              href={href}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel="noreferrer"
-              aria-label={`${person.name} — ${label}`}
-              className="inline-flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:text-primary"
-            >
-              <Icon className="h-3.5 w-3.5" />
-            </a>
-          ))}
-        </div>
+      {/* Links — ALWAYS rendered (the only reserved row), pinned to bottom */}
+      <div className="mt-auto flex min-h-[28px] gap-1.5 border-t border-border pt-2">
+        {links.map(({ href, icon: Icon, label }) => (
+          <a
+            key={href}
+            href={href}
+            target={href.startsWith("mailto:") ? undefined : "_blank"}
+            rel="noreferrer"
+            aria-label={`${person.name} — ${label}`}
+            className="inline-flex h-[28px] w-[28px] items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:text-primary"
+          >
+            <Icon className="h-3.5 w-3.5" />
+          </a>
+        ))}
       </div>
     </article>
   )
@@ -278,12 +255,10 @@ type PeopleGridProps = {
 }
 
 /**
- * 1-col on mobile, 2-col on lg+ — matches the wider horizontal card footprint.
- * `auto-rows-fr` makes every row in this grid take the same height (= the
- * tallest card's content), so all cards in the section are uniform regardless
- * of which optional fields they have. Combined with `h-full` and `mt-auto` on
- * the links row inside PersonCard, shorter cards get their flex space above
- * the icon bar — links stay anchored to the bottom edge.
+ * Responsive 1/2/3-column grid. `auto-rows-fr` makes every row the height of
+ * the tallest card in that row; combined with `h-full` and `mt-auto` on the
+ * links row inside PersonCard, shorter cards push their links to the bottom
+ * edge so every link bar aligns across the grid.
  */
 export function PeopleGrid({
   people,
@@ -292,7 +267,12 @@ export function PeopleGrid({
 }: PeopleGridProps) {
   if (people.length === 0) return null
   return (
-    <div className={cn("grid auto-rows-fr gap-5 lg:grid-cols-2", className)}>
+    <div
+      className={cn(
+        "grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3",
+        className,
+      )}
+    >
       {people.map((person) => (
         <PersonCard
           key={person.id}

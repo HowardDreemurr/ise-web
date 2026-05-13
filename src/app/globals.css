@@ -2,6 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Activate scroll-driven sticky pinning only when the viewport is both wide
+ * and tall enough to comfortably hold a viewport-pinned scene. Below this,
+ * scenes flow normally so content can never be clipped. */
+@custom-variant pin (@media (min-width: 768px) and (min-height: 880px));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -214,5 +219,32 @@
   [data-anchor-flash]:target {
     animation: none;
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 50%, transparent);
+  }
+}
+
+/* Breathing-glow CTA — used on the home hero's primary button.
+   Cerulean halo gently pulses (~2.6s cycle) to draw the eye without
+   demanding attention. Reduced-motion users get a static soft glow instead. */
+@keyframes ise-pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(56, 189, 248, 0.40),
+      0 0 14px 0 rgba(56, 189, 248, 0.30);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(56, 189, 248, 0),
+      0 0 34px 8px rgba(56, 189, 248, 0.55);
+  }
+}
+
+.ise-pulse-glow {
+  animation: ise-pulse-glow 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ise-pulse-glow {
+    animation: none;
+    box-shadow: 0 0 22px 4px rgba(56, 189, 248, 0.40);
   }
 }

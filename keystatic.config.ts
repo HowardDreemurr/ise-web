@@ -87,6 +87,20 @@ export default config({
           github: fields.text({ label: "GitHub" }),
           linkedin: fields.text({ label: "LinkedIn" }),
         }),
+        metrics: fields.object({
+          citations: fields.integer({
+            label: "Citations",
+            description: "Total citation count (from Google Scholar)",
+          }),
+          hIndex: fields.integer({
+            label: "h-index",
+            description: "Google Scholar h-index",
+          }),
+          i10Index: fields.integer({
+            label: "i10-index",
+            description: "Google Scholar i10-index",
+          }),
+        }),
         bio: fields.markdoc({ label: "Bio" }),
       },
     }),
@@ -380,6 +394,42 @@ export default config({
       },
     }),
 
+    /* ---------- Openings (PhD / Postdoc / Industry / General) --------------- */
+    openings: collection({
+      label: "Openings",
+      slugField: "title",
+      path: "content/openings/*",
+      format: { contentField: "body" },
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        type: fields.select({
+          label: "Category",
+          options: [
+            { label: "PhD opportunity", value: "phd" },
+            { label: "Postdoc / research staff", value: "postdoc" },
+            { label: "Industry collaboration", value: "industry" },
+            { label: "General contact", value: "general" },
+          ],
+          defaultValue: "phd",
+        }),
+        posted: fields.date({ label: "Date posted" }),
+        deadline: fields.date({
+          label: "Deadline",
+          description: "Optional — leave empty for rolling postings",
+        }),
+        summary: fields.text({
+          label: "Summary",
+          description: "1-2 sentences shown on the list",
+          multiline: true,
+        }),
+        link: fields.text({
+          label: "External link",
+          description: "Optional — typically a university page or job ad",
+        }),
+        body: fields.markdoc({ label: "Body" }),
+      },
+    }),
+
     /* ---------- News --------------------------------------------------------- */
     news: collection({
       label: "News",
@@ -406,6 +456,29 @@ export default config({
           label: "Image",
           directory: "public/images/news",
           publicPath: "/images/news/",
+        }),
+        icon: fields.select({
+          label: "Icon (fallback when no image)",
+          options: [
+            { label: "— None —", value: "" },
+            { label: "Award", value: "award" },
+            { label: "Badge / Recognition", value: "badge-check" },
+            { label: "Brain (AI/ML)", value: "brain" },
+            { label: "Building (Institution)", value: "building" },
+            { label: "Coins (Funding)", value: "coins" },
+            { label: "CPU/GPU (Hardware)", value: "cpu" },
+            { label: "Document (Paper)", value: "file-text" },
+            { label: "Flame (Wildfire)", value: "flame" },
+            { label: "Globe (International)", value: "globe" },
+            { label: "Graduation Cap (Academic)", value: "graduation-cap" },
+            { label: "Handshake (Partnership)", value: "handshake" },
+            { label: "Network (Connectivity)", value: "network" },
+            { label: "Plane (UAV)", value: "plane" },
+            { label: "Satellite (Remote Sensing)", value: "satellite" },
+            { label: "Sprout (Vegetation)", value: "sprout" },
+            { label: "Trophy", value: "trophy" },
+          ],
+          defaultValue: "",
         }),
         relatedPeople: fields.array(
           fields.relationship({ label: "Person", collection: "people" }),

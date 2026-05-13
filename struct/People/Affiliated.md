@@ -31,12 +31,18 @@ Sort alphabetical by surname. No grouping by sub-type.
 
 ## Card layout
 
+Same photoless compact `PersonCard` template used elsewhere on `/people/*`:
+
 ```
-┌─────────────────────────────────────┐
-│  [photo]   Name        [Affiliated] │
-│            role · affiliation       │← affiliation is primary
-│            [website] [scholar]      │
-└─────────────────────────────────────┘
+┌────────────────────────┐
+│ [Affiliated]           │
+│ Name                   │
+│ Role                   │
+│ Affiliation            │← affiliation is primary; period usually omitted
+│ Research: tag · tag    │
+│ ──────────────────     │
+│ [website] [scholar]    │
+└────────────────────────┘
 ```
 
 Affiliation is the primary subtitle (replacing `period`), since "where they are" matters more than "when they joined". No internal email, no funding tag.

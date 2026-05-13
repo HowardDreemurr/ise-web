@@ -30,8 +30,7 @@ export function ResourceCard({ resource, className }: ResourceCardProps) {
     <Wrapper
       {...wrapperProps}
       className={cn(
-        "ise-panel group block overflow-hidden transition-[border-color,transform] duration-200 hover:border-primary/35",
-        resource.link && "hover:-translate-y-0.5",
+        "ise-panel group block overflow-hidden transition-[border-color] duration-200 hover:border-primary/35",
         className,
       )}
     >

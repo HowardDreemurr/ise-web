@@ -1,40 +1,45 @@
+import Link from "next/link"
 import type { Metadata } from "next"
-import { GraduationCap, Handshake, Mail } from "lucide-react"
-
 import {
-  Container,
-  Reveal,
-  Section,
-  SubPageHero,
-} from "@/components"
+  ArrowRight,
+  GraduationCap,
+  Handshake,
+  Mail,
+  Users,
+} from "lucide-react"
+
+import { Container, Reveal, Section, SubPageHero } from "@/components"
 
 export const metadata: Metadata = {
-  title: "Join Us",
+  title: "Collaborate",
   description:
-    "PhD opportunities, postdoc positions, and industry collaboration with the ISE Group.",
+    "PhD opportunities, postdoc positions, industry collaboration, and direct contact for the ISE Group at the University of Exeter.",
 }
 
 const PATHWAYS = [
   {
+    href: "/join/phd",
     icon: GraduationCap,
-    title: "PhD candidates",
-    description:
-      "We supervise PhDs across all three themes — sensing, processing, and decision making. UK & international applicants welcome; CSC, EPSRC IAA, EI CDT, and self-funded routes accepted.",
-    cta: "Email C.Luo@exeter.ac.uk with a CV and a one-page research statement.",
+    title: "PhD Opportunities",
+    desc: "Scholarships and supervision routes — CSC, EPSRC IAA, EI CDT, self-funded — across sensing, processing, and decision making.",
   },
   {
-    icon: Mail,
-    title: "Postdoc & research staff",
-    description:
-      "Open positions are advertised on the University of Exeter careers portal. Reach out before applying so we can discuss fit and project alignment.",
-    cta: "Mention which project (e.g. INSTANT, Wildfire, NEOM) you'd like to join.",
+    href: "/join/postdoc",
+    icon: Users,
+    title: "Postdoc & Research Staff",
+    desc: "Open postdoc and RA positions, advertised via the University of Exeter careers portal.",
   },
   {
+    href: "/join/industry",
     icon: Handshake,
-    title: "Industry collaboration",
-    description:
-      "We partner with industry on Innovate UK / KTP / Knowledge Transfer projects, EPSRC IAA work, and direct contracts. Past collaborators include IBM, Met Office, Thales, BT, RCA and SpaceClipper.",
-    cta: "Tell us about your problem; we'll respond with a one-pager and possible funding routes.",
+    title: "Industry Collaboration",
+    desc: "Innovate UK / KTP / EPSRC IAA partnerships and direct industry contracts.",
+  },
+  {
+    href: "/join/contact",
+    icon: Mail,
+    title: "Get in Touch",
+    desc: "Direct PI contact for everything else — talks, visits, press, and general enquiries.",
   },
 ]
 
@@ -42,50 +47,32 @@ export default function JoinPage() {
   return (
     <div className="bg-background">
       <SubPageHero
-        title="Work with the ISE Group"
-        description="We welcome PhD candidates, postdocs, and industry partners interested in intelligent sensing for environmental observation."
+        title="Collaborate"
+        description="We welcome PhD candidates, postdocs, industry partners, and visitors interested in intelligent sensing for environmental observation."
       />
 
-      <Section className="py-12 md:py-16">
+      <Section className="py-10 md:py-14">
         <Container>
-          <div className="grid gap-6 md:grid-cols-3">
-            {PATHWAYS.map(({ icon: Icon, title, description, cta }, idx) => (
-              <Reveal key={title} delayMs={idx * 60}>
-                <div className="ise-panel flex h-full flex-col gap-3 p-6">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/8 text-primary">
-                    <Icon className="h-6 w-6" strokeWidth={1.75} />
+          <div className="grid auto-rows-fr gap-4 md:grid-cols-2">
+            {PATHWAYS.map(({ href, icon: Icon, title, desc }, idx) => (
+              <Reveal key={href} delayMs={idx * 60} className="h-full">
+                <Link
+                  href={href}
+                  className="ise-panel group flex h-full flex-col p-5 transition-colors hover:border-primary/40"
+                >
+                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/8 text-primary">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {description}
+                  <p className="font-serif text-lg font-semibold">{title}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
+                  <p className="mt-auto inline-flex items-center gap-1 pt-3 text-xs font-semibold text-primary">
+                    View
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </p>
-                  <p className="mt-auto rounded-md bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
-                    {cta}
-                  </p>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      <Section
-        kicker="Contact"
-        title="Get in touch"
-        className="section-muted py-12"
-      >
-        <Container>
-          <p className="max-w-2xl text-base">
-            Email the PI directly:{" "}
-            <a
-              href="mailto:C.Luo@exeter.ac.uk"
-              className="font-semibold text-primary hover:underline"
-            >
-              C.Luo@exeter.ac.uk
-            </a>
-            . We aim to reply within a week — please flag clearly which pathway
-            you&apos;re writing about so we can route the conversation quickly.
-          </p>
         </Container>
       </Section>
     </div>

@@ -7,7 +7,14 @@ import { SiteHeader } from "./SiteHeader"
 
 const ADMIN_PREFIXES = ["/keystatic"]
 
-export function SiteChrome({ children }: { children: React.ReactNode }) {
+export function SiteChrome({
+  children,
+  showAffiliated = false,
+}: {
+  children: React.ReactNode
+  /** Hide the Affiliated sub-tab in nav when no affiliated members exist. */
+  showAffiliated?: boolean
+}) {
   const pathname = usePathname()
   const isAdmin = ADMIN_PREFIXES.some((p) => pathname?.startsWith(p))
 
@@ -17,7 +24,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
+      <SiteHeader showAffiliated={showAffiliated} />
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <BackToTop />

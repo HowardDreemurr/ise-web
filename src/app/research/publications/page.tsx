@@ -20,8 +20,12 @@ export const metadata: Metadata = {
 export default function PublicationsPage() {
   const pubs = getPublications()
   const peopleById = getPeopleIndex()
-  const featured = pubs.filter((p) => p.featured)
-  const rest = pubs.filter((p) => !p.featured)
+  // Cap Featured to match the home page; surplus featured papers fall through to the archive.
+  const FEATURED_CAP = 6
+  const featuredAll = pubs.filter((p) => p.featured)
+  const featured = featuredAll.slice(0, FEATURED_CAP)
+  const featuredIds = new Set(featured.map((p) => p.id))
+  const rest = pubs.filter((p) => !featuredIds.has(p.id))
 
   // getPublications() is sorted by year desc; Chronology buckets by year.
   const restEntries: ChronologyEntry[] = rest.map((p) => ({
@@ -40,10 +44,12 @@ export default function PublicationsPage() {
 
       {pubs.length === 0 ? (
         <Section className="py-12">
-          <EmptyState
-            title="No publications published yet."
-            description="Add publications via Keystatic; the list updates at the next build."
-          />
+          <Container>
+            <EmptyState
+              title="No publications published yet."
+              description="Add publications via Keystatic; the list updates at the next build."
+            />
+          </Container>
         </Section>
       ) : (
         <>
@@ -53,7 +59,9 @@ export default function PublicationsPage() {
                 <div className="grid auto-rows-fr gap-4 md:grid-cols-2">
                   {featured.map((p, idx) => (
                     <Reveal key={p.id} delayMs={Math.min(idx, 8) * 30} className="h-full">
-                      <PublicationCard pub={p} peopleById={peopleById} />
+                      <div id={p.id} className="h-full scroll-mt-24">
+                        <PublicationCard pub={p} peopleById={peopleById} />
+                      </div>
                     </Reveal>
                   ))}
                 </div>

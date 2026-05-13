@@ -2,6 +2,7 @@
 title: "EPSRC IAA Impact Visionary Award for Wildfire Foundation Models"
 date: 2025-06-01
 tag: Project
+imageUrl: /images/news/wildfire.jpg
 relatedPeople:
   - member-luo
 ---

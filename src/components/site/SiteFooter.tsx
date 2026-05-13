@@ -8,21 +8,21 @@ const RESEARCH_LINKS: FooterLink[] = [
   { label: "Pillars", href: "/research" },
   { label: "Projects", href: "/research/projects" },
   { label: "Publications", href: "/research/publications" },
-  { label: "Open Source", href: "/resources" },
+  { label: "Resources", href: "/resources" },
 ]
 
 const COMMUNITY_LINKS: FooterLink[] = [
+  { label: "People", href: "/people" },
   { label: "News", href: "/news" },
-  { label: "Seminars", href: "#" },
-  { label: "Vacancies", href: "#" },
 ]
 
 const ABOUT_LINKS: FooterLink[] = [
   { label: "The Group", href: "/" },
-  { label: "People", href: "/people" },
   { label: "Collaborations", href: "/research/impact" },
   { label: "Contact", href: "/join" },
 ]
+
+const REPORT_BUG_URL = "https://github.com/HowardDreemurr/ise-web/issues/new"
 
 function ColLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -66,7 +66,7 @@ export function SiteFooter() {
               >
                 C.Luo@Exeter.ac.uk
               </a>
-              <p>Harrison Building · Exeter EX4 4QF, UK</p>
+              <p>Kathleen Booth Building · University of Exeter · Exeter EX4 4QF, UK</p>
             </div>
           </div>
 
@@ -91,12 +91,20 @@ export function SiteFooter() {
         <div className="flex flex-col items-start gap-4 pt-6 text-[12.5px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} ISE Lab · University of Exeter</div>
           <div className="flex gap-5">
-            <Link href="#" className="text-white/55 hover:text-white">
+            <Link href="/privacy" className="text-white/55 hover:text-white">
               Privacy
             </Link>
-            <Link href="#" className="text-white/55 hover:text-white">
+            <Link href="/accessibility" className="text-white/55 hover:text-white">
               Accessibility
             </Link>
+            <a
+              href={REPORT_BUG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/55 hover:text-white"
+            >
+              Report a bug
+            </a>
           </div>
         </div>
       </div>

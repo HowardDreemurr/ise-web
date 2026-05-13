@@ -22,6 +22,14 @@ export type PersonLinks = {
   linkedin?: string
 }
 
+/** Google Scholar-style metrics, set manually on the person profile.
+ *  Render only when at least one number is present. */
+export type PersonMetrics = {
+  citations?: number
+  hIndex?: number
+  i10Index?: number
+}
+
 export type Person = {
   id: string
   name: string
@@ -36,6 +44,7 @@ export type Person = {
   interests?: string[]
   roleHighlights?: string[]
   links?: PersonLinks
+  metrics?: PersonMetrics
   bio?: string
 }
 
@@ -205,6 +214,8 @@ export type NewsItem = {
   subtitle?: string
   tag?: NewsTag
   imageUrl?: string
+  /** Lucide icon name (kebab-case) used by NewsCard when no imageUrl is set. */
+  icon?: string
   relatedPeople?: string[]
   relatedProjs?: string[]
   relatedPubs?: string[]
@@ -212,6 +223,21 @@ export type NewsItem = {
   relatedEvents?: string[]
   links?: NewsLink[]
   content?: string
+}
+
+/* -------- Openings -------------------------------------------------------- */
+
+export type OpeningType = "phd" | "postdoc" | "industry" | "general"
+
+export type Opening = {
+  id: string
+  title: string
+  type: OpeningType
+  posted?: string
+  deadline?: string
+  summary?: string
+  link?: string
+  body?: string
 }
 
 /* -------- IO helpers ------------------------------------------------------ */
@@ -234,7 +260,7 @@ function readMatter<T>(filePath: string): { data: T; content: string; slug: stri
   const { data, content } = matter(raw)
   // YAML auto-parses ISO dates to Date — coerce known date fields back to "YYYY-MM-DD".
   const obj = data as Record<string, unknown>
-  for (const key of ["date", "endDate"]) {
+  for (const key of ["date", "endDate", "posted", "deadline"]) {
     if (key in obj) obj[key] = toIsoIfDate(obj[key])
   }
   const slug = path.basename(filePath, ".md")
@@ -260,6 +286,7 @@ export function getPeople(): Person[] {
       interests: data.interests,
       roleHighlights: data.roleHighlights,
       links: data.links,
+      metrics: data.metrics,
       bio: content || undefined,
     }
   })
@@ -458,6 +485,25 @@ export function getEvents(): GroupEvent[] {
     .sort((a, b) => ((b.date ?? "") < (a.date ?? "") ? -1 : 1))
 }
 
+export function getOpenings(): Opening[] {
+  return readDir("openings")
+    .map((file) => {
+      const { data, content, slug } = readMatter<Omit<Opening, "id" | "body"> & { id?: string }>(file)
+      return {
+        id: data.id ?? slug,
+        title: data.title,
+        type: data.type,
+        posted: data.posted,
+        deadline: data.deadline,
+        summary: data.summary,
+        link: data.link,
+        body: content || undefined,
+      }
+    })
+    // Newest posted first; entries without a posted date sink to the bottom.
+    .sort((a, b) => ((b.posted ?? "") < (a.posted ?? "") ? -1 : 1))
+}
+
 export function getNews(): NewsItem[] {
   return readDir("news")
     .map((file) => {
@@ -469,6 +515,7 @@ export function getNews(): NewsItem[] {
         subtitle: data.subtitle,
         tag: data.tag,
         imageUrl: data.imageUrl,
+        icon: data.icon,
         relatedPeople: data.relatedPeople,
         relatedProjs: data.relatedProjs,
         relatedPubs: data.relatedPubs,
